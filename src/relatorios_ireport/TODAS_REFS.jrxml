@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="groovy" columnCount="3" pageWidth="257" pageHeight="42" columnWidth="85" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0e5c16f8-a12b-4cd8-af9d-17f8d2f156cb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select codigo from produtos ORDER BY CODIGO]]>
+	</queryString>
+	<field name="codigo" class="java.lang.String"/>
+	<group name="CODIGO" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{codigo}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="40">
+			<textField evaluationTime="Group" evaluationGroup="CODIGO">
+				<reportElement x="0" y="0" width="84" height="40" printWhenGroupChanges="CODIGO" uuid="d1a8760f-00ee-4cdb-8f99-c38f7dbe3d2f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Group" evaluationGroup="CODIGO">
+				<reportElement x="84" y="0" width="84" height="40" printWhenGroupChanges="CODIGO" uuid="5f003926-abf9-4c84-a72d-8fd0b764d9c6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Group" evaluationGroup="CODIGO">
+				<reportElement x="173" y="0" width="84" height="40" printWhenGroupChanges="CODIGO" uuid="a418f2fe-6e1b-46c4-afcf-a760e9526af7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

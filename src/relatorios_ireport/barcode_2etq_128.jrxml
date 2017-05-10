@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" columnCount="2" pageWidth="255" pageHeight="56" columnWidth="127" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="70990e8d-3acc-4850-afc1-7b3122822a6c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ref" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tamanho" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codigo_tamanho" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codigo_ref" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select to_char(id_cor, 'fm000') as id_cor from produto_cores
+where codigo = $P{codigo_ref} and cor = $P{cor};]]>
+	</queryString>
+	<field name="id_cor" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="55" splitType="Stretch">
+			<componentElement>
+				<reportElement x="142" y="6" width="106" height="31" uuid="10a7ab4a-b3e1-4c0e-b4ec-8dbd5c6f5c1f"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false" barHeight="55">
+					<jr:codeExpression><![CDATA[$P{codigo_ref}+$F{id_cor}+$P{codigo_tamanho}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="129" y="38" width="126" height="17" uuid="c2150e44-12e0-4536-88e6-2250bb7e35bf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ref}+"-"+$P{cor}+"-"+$P{tamanho}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="13" y="6" width="106" height="31" uuid="fb0b039e-4f43-4492-a385-cd300a453a35"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false" barHeight="55">
+					<jr:codeExpression><![CDATA[$P{codigo_ref}+$F{id_cor}+$P{codigo_tamanho}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="38" width="129" height="17" uuid="89a19fa1-a29e-4175-882d-af71a2134ec3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ref}+"-"+$P{cor}+"-"+$P{tamanho}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="575" leftMargin="10" rightMargin="10" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="5cc53364-9902-493f-881a-88b3b7b5927f">
+	<property name="ireport.zoom" value="1.1000000000000119"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1244"/>
+	<subDataset name="dataset1" uuid="49d6a66a-f803-4779-8d03-8d61c25ecff1"/>
+	<parameter name="arquivo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band height="800" splitType="Stretch">
+			<image>
+				<reportElement mode="Opaque" x="0" y="-2" width="555" height="802" uuid="ebbe2f5a-ff5a-4b1b-bd4e-6801906b5a82"/>
+				<imageExpression><![CDATA[$P{arquivo}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="800" splitType="Stretch"/>
+	</title>
+</jasperReport>

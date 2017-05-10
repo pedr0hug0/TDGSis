@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="n_pedido" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="e04a8476-eca6-4135-99e3-b2228199f35b">
+	<property name="ireport.zoom" value="1.3310000000000024"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select ip.codigo, c.cor, ip.descricao from produtos ip
+inner join produto_cores c
+	on ip.codigo = c.codigo
+order by ip.descricao, ip.codigo, c.cor]]>
+	</queryString>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="cor" class="java.lang.String"/>
+	<field name="descricao" class="java.lang.String"/>
+	<sortField name="codigo"/>
+	<sortField name="cor"/>
+	<variable name="t1_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="t2_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="t3_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="t4_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="total_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="total_ref" class="java.lang.Integer" resetType="Group" resetGroup="Codigo" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="t1_desc" class="java.lang.Integer" resetType="Group" resetGroup="Descricao" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="t2_desc" class="java.lang.Integer" resetType="Group" resetGroup="Descricao" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="t3_desc" class="java.lang.Integer" resetType="Group" resetGroup="Descricao" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="t4_desc" class="java.lang.Integer" resetType="Group" resetGroup="Descricao" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_desc" class="java.lang.Integer" resetType="Group" resetGroup="Descricao" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<group name="Descricao">
+		<groupExpression><![CDATA[$F{descricao}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<textField isBlankWhenNull="false">
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="15" backcolor="#F0F0F0" uuid="fa1769e9-80b2-4034-991b-bd832ba3683b"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font size="11" isBold="false" isUnderline="false" isStrikeThrough="false"/>
+						<paragraph firstLineIndent="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Codigo">
+		<groupExpression><![CDATA[$F{codigo}]]></groupExpression>
+		<groupFooter>
+			<band height="1">
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="555" height="1" forecolor="#CCCCCC" uuid="c11c7958-ea99-417d-90fa-d0e7c4b56ded"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="15">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="158" height="15" uuid="fe1ad4bb-1bf5-4523-b01c-2e4fd8b92c75"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="15">
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="537" y="0" width="18" height="15" forecolor="#FFFFFF" backcolor="#006699" uuid="e922bc48-7da2-4af4-bddf-bfc53bab2a8a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="328" y="0" width="209" height="15" forecolor="#FFFFFF" backcolor="#006699" uuid="25602751-cab1-49a3-96e9-17f1e30ad156"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="43" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="7f2c3ac8-6ece-493d-8386-bf4449f09fab"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REF]]></text>
+			</staticText>
+			<line>
+				<reportElement mode="Transparent" x="0" y="15" width="555" height="1" forecolor="#CCCCCC" uuid="cff6d0bb-8263-440c-ae86-037e2d848748"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="43" y="0" width="76" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="71a9dff7-b7ed-48cd-8139-9d1790638445"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="142" y="0" width="79" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="e765c253-568b-4c4e-84b5-9f919709855f"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P/10/G1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="289" y="0" width="68" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="e610599c-1fb2-4967-afcb-a7699ab9ce57"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[G/14/G3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="357" y="0" width="68" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="c1f52dc3-65d7-4b17-aa15-0186de54ae26"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GG/16]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="221" y="0" width="68" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="59745e13-bdae-45ca-b0dd-951dafc46345"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[M/12/G2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="425" y="0" width="130" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="e764647c-baa3-4e29-82d4-afc258027f9f"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL REF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="119" y="0" width="39" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="722317b7-6d83-4b1d-87b0-66e9b23c3fe8"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16">
+			<textField>
+				<reportElement x="43" y="0" width="76" height="15" uuid="91e8dd22-a6b8-4ab2-8bf7-cf8c9d951e8b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="43" height="15" uuid="5e74dc66-ea6a-432d-b315-103d7a89807d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="15" width="554" height="1" printWhenGroupChanges="Codigo" forecolor="#CCCCCC" uuid="3ea7997b-48cc-4f39-b032-a945f02e836f"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15">
+			<textField>
+				<reportElement x="289" y="0" width="246" height="15" uuid="9ddf2d95-2f28-4600-a6e2-dbcc2f20a68f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="535" y="0" width="40" height="15" uuid="74ea51d9-aaa1-433d-bef9-ace3a0196c0f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="10" y="0" width="555" height="1" forecolor="#CCCCCC" uuid="e61d180e-6db2-44ec-ac76-a9344b1b864c"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="30">
+			<line>
+				<reportElement x="1" y="29" width="555" height="1" forecolor="#CCCCCC" uuid="6714f79a-09ca-4149-95a2-6b9eaa45fa4b"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

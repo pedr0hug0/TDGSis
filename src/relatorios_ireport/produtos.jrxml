@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="n_pedido" language="groovy" columnCount="4" pageWidth="595" pageHeight="842" columnWidth="126" columnSpacing="16" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="e04a8476-eca6-4135-99e3-b2228199f35b">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select pro.descricao, pro.codigo from produtos pro
+order by pro.descricao, pro.codigo]]>
+	</queryString>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<sortField name="codigo"/>
+	<group name="Descricao" keepTogether="true">
+		<groupExpression><![CDATA[$F{descricao}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<textField isBlankWhenNull="false">
+					<reportElement mode="Opaque" x="0" y="0" width="136" height="15" backcolor="#F0F0F0" uuid="fa1769e9-80b2-4034-991b-bd832ba3683b"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font size="11" isBold="false" isUnderline="false" isStrikeThrough="false"/>
+						<paragraph firstLineIndent="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="22">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="305" height="15" uuid="25af1105-7e1c-45c2-8ec7-fca7c46a45fe"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PRODUTOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="16">
+			<textField>
+				<reportElement x="0" y="0" width="43" height="15" uuid="5e74dc66-ea6a-432d-b315-103d7a89807d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15"/>
+	</pageFooter>
+</jasperReport>

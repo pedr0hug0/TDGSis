@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="575" leftMargin="10" rightMargin="10" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="5cc53364-9902-493f-881a-88b3b7b5927f">
+	<property name="ireport.zoom" value="1.1000000000000119"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="635"/>
+	<subDataset name="dataset1" uuid="49d6a66a-f803-4779-8d03-8d61c25ecff1"/>
+	<parameter name="arquivo" class="java.lang.String"/>
+	<parameter name="T1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="T2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="T3" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="T4" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="costura_externa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<variable name="qtd_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band height="800" splitType="Stretch">
+			<image>
+				<reportElement mode="Opaque" x="0" y="-2" width="555" height="802" uuid="ebbe2f5a-ff5a-4b1b-bd4e-6801906b5a82"/>
+				<imageExpression><![CDATA[$P{arquivo}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="800" splitType="Stretch">
+			<image>
+				<reportElement x="7" y="450" width="535" height="350" uuid="21685cdd-2dd8-4a77-8007-571ec7e8d15b"/>
+				<imageExpression><![CDATA[$P{costura_externa}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="183" y="567" width="73" height="23" uuid="13336b81-f5a5-46c9-a46e-17486b2e96b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="450" width="73" height="23" uuid="a2627db7-5eb4-4772-8e30-7a24a74dcc35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="681" width="73" height="23" uuid="a2e84fbe-2151-46bf-8874-493e2f6de847"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="681" width="73" height="23" uuid="bd7193a1-b620-4670-a487-8ccc0bd1165e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="567" width="73" height="23" uuid="edf3f04b-6f16-488d-84a5-23dc3286858a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="450" width="73" height="23" uuid="6e8b3600-3708-44ac-86e7-7b686e16ca24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="450" width="73" height="23" uuid="ecfeb88e-295e-4dcf-839a-dc2b2a138419"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="567" width="73" height="23" uuid="eab2f35f-4df1-47eb-81e5-8f32456df3ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="681" width="73" height="23" uuid="5a2964d3-f176-40d2-895d-5c5368f6eaef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="681" width="73" height="23" uuid="12bedb1e-a6e2-4044-825b-1806006a9de7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="567" width="73" height="23" uuid="59b25aed-95b4-4b6e-9be9-262502862238"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="450" width="73" height="23" uuid="2c7d7098-1973-449c-a6d5-e664347d80a3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{T4}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>
