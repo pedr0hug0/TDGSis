@@ -120,6 +120,8 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
         txt_copias = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txt_grade = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txt_obs = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jcombobox_imp = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
@@ -220,7 +222,7 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
         );
         jpContainerLayout.setVerticalGroup(
             jpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 479, Short.MAX_VALUE)
+            .addGap(0, 481, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(jpContainer);
@@ -265,6 +267,11 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
         txt_grade.setEditable(false);
         txt_grade.setFocusable(false);
 
+        jLabel8.setText("OBS:");
+
+        txt_obs.setEditable(false);
+        txt_obs.setFocusable(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -288,7 +295,11 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jComboBox_corte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txt_grade))))
+                                    .addComponent(txt_grade)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_obs)))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -302,6 +313,10 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_grade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_obs, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_ficha_corte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -422,7 +437,7 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -1121,6 +1136,7 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1131,6 +1147,7 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
     private javax.swing.JTextField txt_copias;
     private javax.swing.JTextField txt_copias_ext;
     private javax.swing.JTextField txt_grade;
+    private javax.swing.JTextField txt_obs;
     // End of variables declaration//GEN-END:variables
 
     

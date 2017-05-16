@@ -149,6 +149,7 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
         jRadioButton_adulto = new javax.swing.JRadioButton();
         jRadioButton_juvenil = new javax.swing.JRadioButton();
         jRadioButton_especial = new javax.swing.JRadioButton();
+        jRadioButton_outro = new javax.swing.JRadioButton();
         btn_todas_ref = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
@@ -530,6 +531,14 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton_outro);
+        jRadioButton_outro.setText("OUTRO");
+        jRadioButton_outro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton_outroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -564,11 +573,14 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_etq_sortida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jRadioButton_adulto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton_juvenil)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton_especial)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jRadioButton_adulto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton_juvenil)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton_especial))
+                            .addComponent(jRadioButton_outro))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -597,6 +609,8 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                     .addComponent(jRadioButton_juvenil)
                     .addComponent(jRadioButton_especial))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton_outro)
+                .addGap(1, 1, 1)
                 .addComponent(btn_etq_sortida))
         );
 
@@ -658,7 +672,7 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                         .addComponent(btn_todas_ref)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(jcombobox_imp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -946,7 +960,7 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
         
         
         
-        if ( (jRadioButton_adulto.isSelected()) || (jRadioButton_juvenil.isSelected()) || (jRadioButton_especial.isSelected())){
+        if ( (jRadioButton_adulto.isSelected()) || (jRadioButton_juvenil.isSelected()) || (jRadioButton_especial.isSelected()) || (jRadioButton_outro.isSelected()) ){
             
             //fazer
                 String codigo = null;
@@ -967,8 +981,10 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                     op = "1";
                 }else if (jRadioButton_juvenil.isSelected()){
                     op = "2";
-                }else{
+                }else if (jRadioButton_especial.isSelected()){
                     op = "3";
+                }else{
+                    op = "4";//outro
                 }
                 
                 switch (op) {
@@ -989,6 +1005,10 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                         tam_t1 = "G1";
                         tam_t2 = "G2";
                         tam_t3 = "G3";
+                        break;
+                    case "4"://outro
+                        tam_t1 = JOptionPane.showInputDialog("DIGITE O TAMANHO:\nEXEMPLO: P ou 10 ou G1, etc.");  
+                        t1 = Integer.parseInt(JOptionPane.showInputDialog("DIGITE A QUANTIDADE:"));  
                         break;
                     default:
                         JOptionPane.showMessageDialog(rootPane, "Opção invalida");
@@ -1281,6 +1301,10 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jRadioButton_outroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_outroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton_outroActionPerformed
     
     public void imprimir_sortido(String codigo, String tamanho, String arquivo, Integer qtd) throws JRException{
                 
@@ -1596,6 +1620,7 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton_adulto;
     private javax.swing.JRadioButton jRadioButton_especial;
     private javax.swing.JRadioButton jRadioButton_juvenil;
+    private javax.swing.JRadioButton jRadioButton_outro;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JComboBox jcombobox_imp;
