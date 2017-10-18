@@ -134,7 +134,7 @@ public ResultSet relatorio_vendas(String tipo_pedido) {
 	}//fim listar vendas   
 
 
-//listar vendas dos n_pedidos selecionados
+//listar vendas dos n_pedidos selecionados com tipo pedido
 public ResultSet relatorio_vendas_n_pedidos(String tipo_pedido, String todos_n_pedidos) {
                 try {
                     
@@ -147,12 +147,12 @@ public ResultSet relatorio_vendas_n_pedidos(String tipo_pedido, String todos_n_p
                                                 "from item_pedido ip\n" +
                                                 "INNER JOIN pedidos p\n" +
                                                 "	ON ip.n_pedido = p.n_pedido\n" +
-                                                "	WHERE p.tipo_pedido = '"+tipo_pedido+"' and p.n_pedido in ("+todos_n_pedidos+")\n" +
+                                                "	WHERE p.tipo_pedido like '"+tipo_pedido+"' and p.n_pedido in ("+todos_n_pedidos+")\n" +
                                                 "	group by ip.codigo, ip.cor\n" +
                                                 "UNION\n" +
                                                 "select c.codigo, c.cor, null as total_VENDA, sum(qtd) as total_Corte\n" +
                                                 "from corte c\n" +
-                                                "WHERE c.tipo_pedido = '"+tipo_pedido+"'\n" +
+                                                "WHERE c.tipo_pedido like '"+tipo_pedido+"'\n" +
                                                 "group by c.codigo, c.cor\n" +
                                                 "order by codigo)\n" +
                                                 "AS RELATORIO_VENDAS, produtos pro\n" +
@@ -167,7 +167,9 @@ public ResultSet relatorio_vendas_n_pedidos(String tipo_pedido, String todos_n_p
 		}
                 ResultSet rs = null;
 		return rs;
-	}//fim listar vendas dos n_pedidos selecionados
+	}//fim listar vendas dos n_pedidos selecionados tipo pedido
+
+
 
 
 

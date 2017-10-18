@@ -121,7 +121,8 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
         jLabel4 = new javax.swing.JLabel();
         txt_grade = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txt_obs = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txt_area_obs = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jcombobox_imp = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
@@ -222,7 +223,7 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
         );
         jpContainerLayout.setVerticalGroup(
             jpContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 481, Short.MAX_VALUE)
+            .addGap(0, 557, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(jpContainer);
@@ -269,8 +270,9 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
 
         jLabel8.setText("OBS:");
 
-        txt_obs.setEditable(false);
-        txt_obs.setFocusable(false);
+        txt_area_obs.setColumns(20);
+        txt_area_obs.setRows(5);
+        jScrollPane2.setViewportView(txt_area_obs);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -299,7 +301,7 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(txt_obs)))
+                                .addComponent(jScrollPane2)))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -316,7 +318,7 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(txt_obs, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_ficha_corte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -495,10 +497,12 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
         System.out.println("Caminho: "+ref);
         String corte = jComboBox_corte.getSelectedItem().toString();
         String grade = txt_grade.getText();
+        String obs = txt_area_obs.getText();
         parametros.put("arquivo", ref);
         parametros.put("codigo", codigo);
         parametros.put("corte", corte);
         parametros.put("grade", grade);
+        parametros.put("obs", obs);
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 
         JRResultSetDataSource jrRS = new JRResultSetDataSource(dao.ficha_corte(codigo,corte));
@@ -510,7 +514,7 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
 
                 InputStream inputStream;
 
-                inputStream = getClass().getResourceAsStream( "/relatorios_ireport/fichaCorte.jasper" );
+                inputStream = getClass().getResourceAsStream( "/relatorios_ireport/fichaCorte_teste.jasper" );
 
                 jasperPrint = JasperFillManager.fillReport(inputStream, parametros, jrRS);
                 JasperViewer.viewReport(jasperPrint, false);
@@ -1141,13 +1145,14 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox jcombobox_imp;
     private javax.swing.JPanel jpContainer;
+    private javax.swing.JTextArea txt_area_obs;
     private javax.swing.JTextField txt_codigo;
     private javax.swing.JTextField txt_copias;
     private javax.swing.JTextField txt_copias_ext;
     private javax.swing.JTextField txt_grade;
-    private javax.swing.JTextField txt_obs;
     // End of variables declaration//GEN-END:variables
 
     

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" columnCount="3" pageWidth="276" pageHeight="42" whenNoDataType="NoDataSection" columnWidth="87" leftMargin="7" rightMargin="7" topMargin="0" bottomMargin="0" uuid="0e5c16f8-a12b-4cd8-af9d-17f8d2f156cb">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2020"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tamanho" class="java.lang.String">
+		<defaultValueExpression><![CDATA["P"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="42">
+			<textField evaluationTime="Page">
+				<reportElement x="0" y="22" width="86" height="16" uuid="7c39d21c-16a0-48e6-aa20-f84d441bb011"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Tam:. "+$P{tamanho}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Page">
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="86" height="22" uuid="fffe4420-a95b-4492-951f-d3f0ebfafc03"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ref.: "+$P{codigo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

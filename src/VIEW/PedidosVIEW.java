@@ -75,6 +75,7 @@ public class PedidosVIEW extends javax.swing.JFrame {
         btn_Pesquisar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btn_relatorio_pedidos = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -225,6 +226,13 @@ public class PedidosVIEW extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Consumo Check");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -233,7 +241,7 @@ public class PedidosVIEW extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_n_pedido_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_n_pedido_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_Pesquisar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -248,7 +256,9 @@ public class PedidosVIEW extends javax.swing.JFrame {
                 .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_relatorio_pedidos)
-                .addGap(43, 43, 43))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +273,8 @@ public class PedidosVIEW extends javax.swing.JFrame {
                     .addComponent(btn_Editar)
                     .addComponent(btn_Pesquisar)
                     .addComponent(jButton2)
-                    .addComponent(btn_relatorio_pedidos))
+                    .addComponent(btn_relatorio_pedidos)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -325,7 +336,7 @@ public class PedidosVIEW extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_Razao, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                    .addComponent(txt_Razao, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
                     .addComponent(txt_Fantasia))
                 .addContainerGap())
         );
@@ -343,14 +354,14 @@ public class PedidosVIEW extends javax.swing.JFrame {
         );
 
         btn_Cadastrar_Pedido.setText("Cadastrar Pedido");
-        btn_Cadastrar_Pedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Cadastrar_PedidoActionPerformed(evt);
-            }
-        });
         btn_Cadastrar_Pedido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 btn_Cadastrar_PedidoFocusGained(evt);
+            }
+        });
+        btn_Cadastrar_Pedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Cadastrar_PedidoActionPerformed(evt);
             }
         });
 
@@ -398,7 +409,7 @@ public class PedidosVIEW extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn_Cadastrar_Pedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(115, Short.MAX_VALUE)
+                        .addContainerGap(138, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -581,7 +592,7 @@ public class PedidosVIEW extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jCheckBox_Especial1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
@@ -1210,7 +1221,7 @@ public class PedidosVIEW extends javax.swing.JFrame {
         HashMap parametros = new HashMap();  
         RelatorioDAO dao = new RelatorioDAO();
         
-        String tipo_pedido = "DIVERSOS";
+        String tipo_pedido = "%";//fazer checkbox do tipo_pedido
         parametros.put("tipo_pedido", tipo_pedido);
         parametros.put("todos_n_pedidos", todos_n_pedidos);
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -1234,6 +1245,47 @@ public class PedidosVIEW extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btn_relatorio_pedidosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Boolean calcular;
+        //Integer id;
+        Integer pedidos;
+        
+        
+        String todos_n_pedidos = null;
+        
+        int x = 0;
+
+        for(int i=0;i<jTable1.getRowCount();i++){ 
+            calcular = (Boolean) jTable1.getValueAt(i, 2);
+            if ((calcular != null) && (calcular != false)){//só executa se não for nulo ou estar selecionado
+                System.err.println("Situacao calcular: "+calcular.toString());
+                //SE ESTIVER SELECIONADO
+                if (calcular == true){
+                    
+                    //id = (Integer) jTable1.getValueAt(i, 0);
+                    pedidos = (Integer) jTable1.getValueAt(i, 3);
+                                        
+                    if (x==0){
+                        todos_n_pedidos = pedidos.toString();
+                        
+                    }else{
+                        todos_n_pedidos = todos_n_pedidos+", "+pedidos.toString();
+                    }
+                    System.out.println("Todos os n_pedidos: "+todos_n_pedidos);
+                    x++;
+                    
+                    
+                    
+                }else{
+                }//fim selecionado
+            
+            }//fim SE 
+        }//fim row count (verificou a tabela inteira)
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
     
      //verificar se o Pedido2 X já existe
     public boolean existe_pedido2(String n_pedido){
@@ -1362,6 +1414,7 @@ public class PedidosVIEW extends javax.swing.JFrame {
     private javax.swing.JButton btn_Novo_Cliente;
     private javax.swing.JButton btn_Pesquisar;
     private javax.swing.JButton btn_relatorio_pedidos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox_Especial;
     private javax.swing.JCheckBox jCheckBox_Especial1;

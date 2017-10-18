@@ -1018,7 +1018,9 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
 
                if (!codigo.isEmpty()){//SE TEM CODIGO DA REF
                    try {
-                            String arquivo = "relatorios_ireport/etiqueta_ref_tamanho.jasper";
+                            //etiqueta_ref_tamanho1 = 1 forncedor e tamanho2 de outro fornecedor
+                            //tem que mudar no imprimir() tambem
+                            String arquivo = "relatorios_ireport/etiqueta_ref_tamanho2.jasper";
                             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                             
                             
@@ -1394,7 +1396,7 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
     
     public void imprimir(String codigo, String tamanho, Integer qtd, String descricao) throws JRException{
         
-        String arquivo = "relatorios_ireport/etiqueta_ref_tamanho.jasper"; //arquivo de relatorio
+        String arquivo = "relatorios_ireport/etiqueta_ref_tamanho2.jasper"; //arquivo de relatorio
         //String arquivo = "relatorios_ireport/etiqueta_ref_tamanho.jasper"; //arquivo de relatorio
         java.io.InputStream file = getClass().getClassLoader().getResourceAsStream(arquivo); //carrego o arquivo
 
