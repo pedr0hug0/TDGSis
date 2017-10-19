@@ -428,7 +428,67 @@ public class PedidoDAO {
 		}
     } //fim alterar
         
+    
+
+//criar tabela temporaria com consumo dos pedidos
+            public List<PedidoDTO> getConsumoPedidos(String tipo_pedido, String todos_n_pedidos) {
+                ArrayList<PedidoDTO> pedidos = new ArrayList<PedidoDTO>();
+		try {
+                    
+                    
+                    Conexao.ConectDB();
+                    Statement stmt = Conexao.con.createStatement();
+                    ResultSet rs = null;
+                                            
+                            String comando = "CREATE TEMPORARY TABLE RELATORIO_VENDAS_SELEC AS\n" +
+"				SELECT PRO.DESCRICAO, relatorio_vendas.CODIGO, COR, SUM(total_venda) AS vendido FROM (select ip.codigo, ip.cor, sum(total) as total_VENDA\n" +
+"                                                from item_pedido ip\n" +
+"                                                INNER JOIN pedidos p\n" +
+"                                                	ON ip.n_pedido = p.n_pedido\n" +
+"                                                	WHERE p.tipo_pedido like '"+tipo_pedido+"' and p.n_pedido in ("+todos_n_pedidos+")\n" +
+"                                                	group by ip.codigo, ip.cor\n" +
+"                                                order by codigo)\n" +
+"                                                AS RELATORIO_VENDAS, produtos pro\n" +
+"                                                where relatorio_vendas.codigo = pro.codigo\n" +
+"                                                GROUP BY pro.descricao, relatorio_vendas.CODIGO, COR ORDER BY  CODIGO, COR;";
+                            
+                            stmt.execute(comando.toUpperCase());
+
+                            System.out.println(comando.toUpperCase());
+                            //criou tabela temporaria
+
+                            rs = stmt.executeQuery("SELECT r.descricao, r.codigo, r.cor, r.vendido, p.rendimento, (r.vendido/p.rendimento) as consumo \n" +
+                            "from RELATORIO_VENDAS_SELEC r INNER JOIN produtos p on r.codigo = p.codigo;");
+
+                            System.out.println("SELECT r.descricao, r.codigo, r.cor, r.vendido, p.rendimento, (r.vendido/p.rendimento) as consumo \n" +
+"from RELATORIO_VENDAS_SELEC r INNER JOIN produtos p on r.codigo = p.codigo;");
+
+                    
+                        while (rs.next()) {
+				PedidoDTO pedido = new PedidoDTO();
+                                  
+				
+                                pedido.setDescricao(rs.getString("descricao"));
+                                pedido.setCodigo(rs.getString("codigo"));
+                                pedido.setCor(rs.getString("cor"));
+                                pedido.setQtd(rs.getInt("vendido"));
+                                pedido.setConsumo(rs.getDouble("consumo"));
+                                pedidos.add(pedido);
+                                                            
+			}
+                        stmt.execute("DROP TABLE RELATORIO_VENDAS_SELEC;");
+			Conexao.CloseDB();
+		} catch (Exception e) {
+			System.out.println("Erro ao criar consumo pedidos em pedidoDAO");
+                        System.err.println(e.getMessage());
+		}
+		return pedidos;
+	}//fim listar saldo venda - corte por referencia   
+
         
+    
         
+    
+
         
 }//fim dao

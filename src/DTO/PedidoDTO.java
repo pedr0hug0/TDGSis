@@ -12,11 +12,16 @@ import java.util.Date;
  * @author PeDr0_HuG0
  */
 
-public class PedidoDTO {
+public class PedidoDTO extends CorteDTO{
     
 private Integer id, n_pedido, codigo_cliente, prioriadade;
 private String razao, fantasia, status, data_entrega, data_cadastro, tipo_pedido;
 private Date data;
+
+//malha consumo pedidos
+private String descricao, codigo;
+private double consumo;
+private Integer vendido;
 
     /**
      * @return the n_pedido
@@ -174,6 +179,62 @@ private Date data;
      */
     public void setTipo_pedido(String tipo_pedido) {
         this.tipo_pedido = tipo_pedido;
+    }
+
+    /**
+     * @return the descricao
+     */
+    public String getDescricao() {
+        return descricao;
+    }
+
+    /**
+     * @param descricao the descricao to set
+     */
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    /**
+     * @return the consumo
+     */
+    public Double getConsumo() {
+        return consumo;
+    }
+
+    /**
+     * @param consumo the consumo to set
+     */
+    public void setConsumo(Double consumo) {
+        this.consumo = consumo;
+    }
+
+    /**
+     * @return the vendido
+     */
+    public Integer getVendido() {
+        return vendido;
+    }
+
+    /**
+     * @param vendido the vendido to set
+     */
+    public void setVendido(Integer vendido) {
+        this.vendido = vendido;
+    }
+
+    /**
+     * @return the codigo
+     */
+    public String getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     

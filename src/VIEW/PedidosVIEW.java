@@ -35,6 +35,8 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class PedidosVIEW extends javax.swing.JFrame {
 
+    
+    public static String todos_pedidos_selecionados;
     /**
      * Creates new form PedidosVIEW
      */
@@ -75,7 +77,7 @@ public class PedidosVIEW extends javax.swing.JFrame {
         btn_Pesquisar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btn_relatorio_pedidos = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn_consumo_check = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -226,10 +228,10 @@ public class PedidosVIEW extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Consumo Check");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_consumo_check.setText("Consumo Check");
+        btn_consumo_check.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_consumo_checkActionPerformed(evt);
             }
         });
 
@@ -257,7 +259,7 @@ public class PedidosVIEW extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_relatorio_pedidos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btn_consumo_check)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -274,7 +276,7 @@ public class PedidosVIEW extends javax.swing.JFrame {
                     .addComponent(btn_Pesquisar)
                     .addComponent(jButton2)
                     .addComponent(btn_relatorio_pedidos)
-                    .addComponent(jButton1))
+                    .addComponent(btn_consumo_check))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1246,7 +1248,7 @@ public class PedidosVIEW extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_relatorio_pedidosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_consumo_checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consumo_checkActionPerformed
         // TODO add your handling code here:
         Boolean calcular;
         //Integer id;
@@ -1283,9 +1285,29 @@ public class PedidosVIEW extends javax.swing.JFrame {
             
             }//fim SE 
         }//fim row count (verificou a tabela inteira)
+        todos_pedidos_selecionados = todos_n_pedidos; //verificar
+        consumo_malha_selecionados();
+        
+        new MalhaConsumoPedidosVIEW().setVisible(true);
+        
+    }//GEN-LAST:event_btn_consumo_checkActionPerformed
+    
+    public void consumo_malha_selecionados(){
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+       PedidoDAO dao = new PedidoDAO();
+       DefaultTableModel model =  (DefaultTableModel) jTable1.getModel(); 
+            
+        model.setNumRows(0);
+       
+        for (PedidoDTO pedidos : dao.listarPedidos()) {
+           
+            model.addRow(new Object[]{pedidos.getId(), pedidos.getData_cadastro(),new Boolean(false), pedidos.getN_pedido(), pedidos.getCodigo_cliente(), pedidos.getData_entrega(), pedidos.getRazao(), pedidos.getFantasia(), pedidos.getPrioriadade(), pedidos.getStatus(), pedidos.getTipo_pedido()});
+        }
+        //fim listar
+    }
+    
+    
     
      //verificar se o Pedido2 X já existe
     public boolean existe_pedido2(String n_pedido){
@@ -1413,8 +1435,8 @@ public class PedidosVIEW extends javax.swing.JFrame {
     private javax.swing.JButton btn_Listar;
     private javax.swing.JButton btn_Novo_Cliente;
     private javax.swing.JButton btn_Pesquisar;
+    private javax.swing.JButton btn_consumo_check;
     private javax.swing.JButton btn_relatorio_pedidos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox_Especial;
     private javax.swing.JCheckBox jCheckBox_Especial1;
