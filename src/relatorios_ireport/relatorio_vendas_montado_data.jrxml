@@ -364,7 +364,9 @@ GROUP BY pro.descricao, relatorio_vendas.CODIGO, COR ORDER BY  CODIGO, COR;]]>
 			</textField>
 			<textField>
 				<reportElement x="34" y="0" width="66" height="15" uuid="779e99ca-d200-4fb3-ad5d-cff70f0c8434"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{cor}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">

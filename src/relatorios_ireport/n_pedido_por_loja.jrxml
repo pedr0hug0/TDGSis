@@ -268,7 +268,9 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 		<band height="16">
 			<textField>
 				<reportElement x="43" y="0" width="76" height="15" uuid="91e8dd22-a6b8-4ab2-8bf7-cf8c9d951e8b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{cor}]]></textFieldExpression>
 			</textField>
 			<textField>
