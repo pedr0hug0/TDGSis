@@ -3097,7 +3097,7 @@ public class ItemPedidoVIEW extends javax.swing.JFrame {
                             System.out.println("Qtd Total: "+qtd_total_sortido+" Qtd_divisoria: "+qtd_divisoria+" Divisor: "+divisor);
                             System.out.println("Sobra divisoria: "+sobra_divisoria);
                             
-                            int[] qtd_sortido = new int[30];
+                            int[] qtd_sortido = new int[100];
                             //começar no t1;
                             Integer tamanho_que_parou = 1;
                             
@@ -3139,10 +3139,10 @@ public class ItemPedidoVIEW extends javax.swing.JFrame {
                             //executando
                             
                             //t1_ref[1] = qtd do t1 da ref[1]
-                            int[] t1_ref = new int[30];
-                            int[] t2_ref = new int[30];
-                            int[] t3_ref = new int[30];
-                            int[] t4_ref = new int[30];
+                            int[] t1_ref = new int[100];
+                            int[] t2_ref = new int[100];
+                            int[] t3_ref = new int[100];
+                            int[] t4_ref = new int[100];
                             
                             
                             ItemPedidoDAO dao = new ItemPedidoDAO();
@@ -3906,7 +3906,7 @@ public class ItemPedidoVIEW extends javax.swing.JFrame {
                             System.out.println("Qtd Total: "+qtd_total_sortido+" Qtd_divisoria: "+qtd_divisoria+" Divisor: "+divisor);
                             System.out.println("Sobra divisoria: "+sobra_divisoria);
                             
-                            int[] qtd_sortido = new int[30];
+                            int[] qtd_sortido = new int[100];
                             //começar no t1;
                             Integer tamanho_que_parou = 1;
                             
@@ -3950,10 +3950,10 @@ public class ItemPedidoVIEW extends javax.swing.JFrame {
                             //executando
                             
                             //t1_ref[1] = qtd do t1 da ref[1]
-                            int[] t1_ref = new int[30];
-                            int[] t2_ref = new int[30];
-                            int[] t3_ref = new int[30];
-                            int[] t4_ref = new int[30];
+                            int[] t1_ref = new int[100];
+                            int[] t2_ref = new int[100];
+                            int[] t3_ref = new int[100];
+                            int[] t4_ref = new int[100];
                             
                             
                             ItemPedidoDAO dao = new ItemPedidoDAO();
@@ -4254,7 +4254,7 @@ public class ItemPedidoVIEW extends javax.swing.JFrame {
                             System.out.println("Qtd Total: "+qtd_total_sortido+" Qtd_divisoria: "+qtd_divisoria+" Divisor: "+divisor);
                             System.out.println("Sobra divisoria: "+sobra_divisoria);
                             
-                            int[] qtd_sortido = new int[30];
+                            int[] qtd_sortido = new int[100];
                             //começar no t1;
                             Integer tamanho_que_parou = 1;
                             
@@ -4297,10 +4297,10 @@ public class ItemPedidoVIEW extends javax.swing.JFrame {
                             //executando
                             
                             //t1_ref[1] = qtd do t1 da ref[1]
-                            int[] t1_ref = new int[30];
-                            int[] t2_ref = new int[30];
-                            int[] t3_ref = new int[30];
-                            int[] t4_ref = new int[30];
+                            int[] t1_ref = new int[100];
+                            int[] t2_ref = new int[100];
+                            int[] t3_ref = new int[100];
+                            int[] t4_ref = new int[100];
                             
                             
                             ItemPedidoDAO dao = new ItemPedidoDAO();
@@ -4807,10 +4807,10 @@ public class ItemPedidoVIEW extends javax.swing.JFrame {
                             System.out.println("Qtd Total T4: "+qtd_total_t4_sortido+" Qtd_divisoria: "+qtd_divisoria_t4+" Divisor: "+divisor);
                             System.out.println("Sobra divisoria: "+sobra_divisoria_t4);
                             
-                            int[] t1 = new int[30];
-                            int[] t2 = new int[30];
-                            int[] t3 = new int[30];
-                            int[] t4 = new int[30];
+                            int[] t1 = new int[100];
+                            int[] t2 = new int[100];
+                            int[] t3 = new int[100];
+                            int[] t4 = new int[100];
                             //começar no t1;
                             Integer tamanho_que_parou = 1;
                             
