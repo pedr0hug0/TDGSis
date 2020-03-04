@@ -700,6 +700,22 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
                         t4 = "-";                        
                         break;
                     }
+                    case "BABY":
+                    {
+                        t1 = "01";
+                        t2 = "02";
+                        t3 = "03";
+                        t4 = "-";                        
+                        break;
+                    }
+                    case "KIDS":
+                    {
+                        t1 = "04";
+                        t2 = "06";
+                        t3 = "08";
+                        t4 = "-";                        
+                        break;
+                    }
                     case "JUVENIL":
                     {
                         t1 = "10";
@@ -799,6 +815,22 @@ public class ProdutoFichaVIEW extends javax.swing.JFrame{
                         t1 = "G1";
                         t2 = "G2";
                         t3 = "G3";
+                        t4 = "-";                        
+                        break;
+                    }
+                    case "BABY":
+                    {
+                        t1 = "01";
+                        t2 = "02";
+                        t3 = "03";
+                        t4 = "-";                        
+                        break;
+                    }
+                    case "KIDS":
+                    {
+                        t1 = "04";
+                        t2 = "06";
+                        t3 = "08";
                         t4 = "-";                        
                         break;
                     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="n_pedido" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="e04a8476-eca6-4135-99e3-b2228199f35b">
 	<property name="ireport.zoom" value="1.3310000000000037"/>
-	<property name="ireport.x" value="100"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="saldo_codigo">
 		<conditionalStyle>
@@ -75,7 +75,7 @@
 )
 AS RELATORIO_VENDAS, produtos pro
 where relatorio_vendas.codigo = pro.codigo
-GROUP BY pro.descricao, relatorio_vendas.CODIGO, COR ORDER BY  CODIGO, COR;]]>
+GROUP BY pro.descricao, relatorio_vendas.CODIGO, COR ORDER BY DESCRICAO, CODIGO, COR;]]>
 	</queryString>
 	<field name="descricao" class="java.lang.String"/>
 	<field name="codigo" class="java.lang.String"/>
@@ -84,6 +84,7 @@ GROUP BY pro.descricao, relatorio_vendas.CODIGO, COR ORDER BY  CODIGO, COR;]]>
 	<field name="cortado" class="java.math.BigDecimal"/>
 	<field name="montado" class="java.math.BigDecimal"/>
 	<field name="qtd_corte" class="java.math.BigDecimal"/>
+	<sortField name="descricao"/>
 	<sortField name="codigo"/>
 	<variable name="saldo_cores" class="java.lang.Integer" resetType="Group" resetGroup="cor" calculation="Sum">
 		<variableExpression><![CDATA[($F{cortado}!= null ? $F{cortado} : 0)-($F{vendido}!= null ? $F{vendido} : 0)]]></variableExpression>
@@ -342,8 +343,8 @@ GROUP BY pro.descricao, relatorio_vendas.CODIGO, COR ORDER BY  CODIGO, COR;]]>
 	<detail>
 		<band height="15">
 			<textField>
-				<reportElement x="0" y="0" width="34" height="15" uuid="f57f600f-7b15-426b-83e0-9ac02bfeb337"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement x="-16" y="0" width="50" height="15" uuid="f57f600f-7b15-426b-83e0-9ac02bfeb337"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField>

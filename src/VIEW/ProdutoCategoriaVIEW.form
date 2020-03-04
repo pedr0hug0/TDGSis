@@ -7,7 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="GERENCIAR CORES"/>
+    <Property name="title" type="java.lang.String" value="GERENCIAR CATEGORIA"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -64,6 +64,8 @@
               <Group type="102" attributes="0">
                   <Component id="btn_Listar" min="-2" pref="117" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btn_Excluir" min="-2" max="-2" attributes="0"/>
               </Group>
               <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
@@ -76,6 +78,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_Excluir" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_Listar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="214" max="32767" attributes="0"/>
@@ -112,10 +115,10 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="0">
                     <Column editable="false" title="ID" type="java.lang.Object"/>
-                    <Column editable="false" title="CATEGORIA" type="java.lang.Object"/>
-                    <Column editable="false" title="RENDIMENTO" type="java.lang.Object"/>
-                    <Column editable="false" title="TIPO_TAMANHO" type="java.lang.Object"/>
-                    <Column editable="false" title="GRADE" type="java.lang.Object"/>
+                    <Column editable="true" title="CATEGORIA" type="java.lang.Object"/>
+                    <Column editable="true" title="RENDIMENTO" type="java.lang.Object"/>
+                    <Column editable="true" title="TIPO_TAMANHO" type="java.lang.Object"/>
+                    <Column editable="true" title="GRADE" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="/*ocultar coluna ID da tabela&#xa;        jTable1.getColumnModel().getColumn( 0 ).setMaxWidth( 0 );  &#xa;        jTable1.getColumnModel().getColumn( 0 ).setMinWidth( 0 );  &#xa;        jTable1.getTableHeader().getColumnModel().getColumn( 0 ).setMaxWidth( 0 );  &#xa;        jTable1.getTableHeader().getColumnModel().getColumn( 0 ).setMinWidth( 0 ); &#xa;        //fim ocultar&#xa;*/">
@@ -151,9 +154,20 @@
                   <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jTable1PropertyChange"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Editar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
@@ -289,7 +303,7 @@
           <Properties>
             <Property name="editable" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="15">
+              <StringArray count="23">
                 <StringItem index="0" value="01 MACHAO"/>
                 <StringItem index="1" value="02 GOLA CARECA"/>
                 <StringItem index="2" value="03 GOLA V"/>
@@ -297,14 +311,22 @@
                 <StringItem index="4" value="05 CARECA ESPECIAL"/>
                 <StringItem index="5" value="06 V ESPECIAL"/>
                 <StringItem index="6" value="07 POLO ESPECIAL"/>
-                <StringItem index="7" value="08 CARECA JUVENIL"/>
-                <StringItem index="8" value="09 V JUVENIL"/>
-                <StringItem index="9" value="10 POLO JUVENIL"/>
-                <StringItem index="10" value="11 CARECA ML"/>
-                <StringItem index="11" value="12 V ML"/>
-                <StringItem index="12" value="13 POLO ML"/>
-                <StringItem index="13" value="14 PIQUET"/>
-                <StringItem index="14" value="15 P001"/>
+                <StringItem index="7" value="08 CARECA BABY"/>
+                <StringItem index="8" value="09 CARECA KIDS"/>
+                <StringItem index="9" value="10 CARECA JUVENIL"/>
+                <StringItem index="10" value="11 CARECA SWAG"/>
+                <StringItem index="11" value="12 V BABY"/>
+                <StringItem index="12" value="13 V KIDS"/>
+                <StringItem index="13" value="14 V JUVENIL"/>
+                <StringItem index="14" value="15 POLO BABY"/>
+                <StringItem index="15" value="16 POLO KIDS"/>
+                <StringItem index="16" value="17 POLO JUVENIL"/>
+                <StringItem index="17" value="18 CARECA ML"/>
+                <StringItem index="18" value="19 V ML"/>
+                <StringItem index="19" value="20 POLO ML"/>
+                <StringItem index="20" value="21 PIQUET"/>
+                <StringItem index="21" value="22 P001"/>
+                <StringItem index="22" value=" "/>
               </StringArray>
             </Property>
           </Properties>
@@ -328,10 +350,12 @@
         <Component class="javax.swing.JComboBox" name="jComboBox_tipo_tamanho">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
+              <StringArray count="5">
                 <StringItem index="0" value="NORMAL"/>
                 <StringItem index="1" value="JUVENIL"/>
                 <StringItem index="2" value="ESPECIAL"/>
+                <StringItem index="3" value="BABY"/>
+                <StringItem index="4" value="KIDS"/>
               </StringArray>
             </Property>
           </Properties>

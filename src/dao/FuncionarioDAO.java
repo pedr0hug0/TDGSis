@@ -220,9 +220,9 @@ public class FuncionarioDAO {
                     ResultSet rs;
                     
                     String sql = ("SELECT id, data_evento, tipo, horas, motivo, assinado, funcionario FROM banco_horas "
-                                    + "where funcionario like '%"+nome.toUpperCase()+"%' AND assinado like '%"+assinado.toUpperCase()+"%';");
-                    
-                    rs = stmt.executeQuery(sql);
+                                    + "where funcionario like '"+nome.toUpperCase()+"' AND assinado like '"+assinado.toUpperCase()+"';");
+                    //removi % do inicio e fim dos likes (erro trazendo varios funcionarios com mesmo inicio de nome.
+                    rs = stmt.executeQuery(sql.toUpperCase());
                     
                     System.out.println(sql);
 		
@@ -276,7 +276,7 @@ public class FuncionarioDAO {
                                 "ORDER BY rel.funcionario;");
                     
                     
-                    rs = stmt.executeQuery(sql);
+                    rs = stmt.executeQuery(sql.toUpperCase());
                     
                     System.out.println(sql);
 		

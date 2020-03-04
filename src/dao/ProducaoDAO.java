@@ -128,14 +128,17 @@ public boolean adicionaProducao(ProducaoDTO producaoDTO){
                     Conexao.ConectDB();
                     Statement stmt = Conexao.con.createStatement();
                     ResultSet rs;
+                    String sql = null;
                     //corte, codigo, cor, frente, costas, manga, status, data_alteracao, data_inicio, qtd
                     if ("TODOS".equals(status)){
-                        rs = stmt.executeQuery("select id, corte, codigo, cor, frente, costas, manga, status, data_alteracao, data_inicio, qtd, qtd_montado from producao where codigo like '"+codigo+"%' and tipo_pedido like '"+tipo_pedido+"' order by status, id;");
-                        System.out.println("select id, corte, codigo, cor, frente, costas, manga, status, data_alteracao, data_inicio, qtd, qtd_montado from producao where codigo like '"+codigo+"%' and tipo_pedido like '"+tipo_pedido+"' order by status, id;");
+                        sql = "select id, corte, codigo, cor, frente, costas, manga, status, data_alteracao, data_inicio, qtd, qtd_montado from producao where codigo like '"+codigo+"%' and tipo_pedido like '"+tipo_pedido+"' order by status, id;";
+                        rs = stmt.executeQuery(sql.toUpperCase());
+                        System.out.println(sql.toUpperCase());
                     }
                     else{
-                        rs = stmt.executeQuery("select id, corte, codigo, cor, frente, costas, manga, status, data_alteracao, data_inicio, qtd, qtd_montado from producao where status = '"+status+"' and codigo like '"+codigo+"%' and tipo_pedido like '"+tipo_pedido+"' order by status, id;");
-                        System.out.println("select id, corte, codigo, cor, frente, costas, manga, status, data_alteracao, data_inicio, qtd, qtd_montado from producao where status = '"+status+"' and codigo like '"+codigo+"%' and tipo_pedido like '"+tipo_pedido+"' order by status, id;");
+                        sql = "select id, corte, codigo, cor, frente, costas, manga, status, data_alteracao, data_inicio, qtd, qtd_montado from producao where status = '"+status+"' and codigo like '"+codigo+"%' and tipo_pedido like '"+tipo_pedido+"' order by status, id;";
+                        rs = stmt.executeQuery(sql.toUpperCase());
+                        System.out.println(sql.toUpperCase());
                     }
                     
 		
@@ -264,8 +267,9 @@ public boolean adicionaProducao(ProducaoDTO producaoDTO){
                     if (codigo == null || codigo.isEmpty()){
                         codigo = "%";
                     }
-                        rs = stmt.executeQuery("select id, corte, codigo, cor, qtd, qtd_montado, perda, perdeu, data_alteracao, data_inicio from producao where perdeu like '"+tipo_perdeu+"' and codigo like '"+codigo+"%' order by data_alteracao desc, id;");
-                        System.out.println("select id, corte, codigo, cor, qtd, qtd_montado, perda, perdeu, data_alteracao, data_inicio from producao where perdeu like '"+tipo_perdeu+"' and codigo like '"+codigo+"%' order by id;");
+                        String sql = "select id, corte, codigo, cor, qtd, qtd_montado, perda, perdeu, data_alteracao, data_inicio from producao where perdeu like '"+tipo_perdeu+"' and codigo like '"+codigo+"%' order by data_alteracao desc, id;";
+                        rs = stmt.executeQuery(sql.toUpperCase());
+                        System.out.println(sql.toUpperCase());
                    
                         while (rs.next()) {
 				ProducaoDTO producao = new ProducaoDTO();

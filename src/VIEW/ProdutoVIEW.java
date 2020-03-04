@@ -193,6 +193,7 @@ public class ProdutoVIEW extends javax.swing.JFrame {
 
         jLabel8.setText("Tipo tamanho:");
 
+        txt_Ref.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txt_Ref.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_RefFocusLost(evt);
@@ -215,7 +216,7 @@ public class ProdutoVIEW extends javax.swing.JFrame {
 
         jLabel10.setText("Qtd tamanho:");
 
-        jComboBoxTipo_tamanho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NORMAL", "JUVENIL", "ESPECIAL" }));
+        jComboBoxTipo_tamanho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NORMAL", "JUVENIL", "ESPECIAL", "BABY", "KIDS" }));
         jComboBoxTipo_tamanho.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxTipo_tamanhoItemStateChanged(evt);
@@ -1007,7 +1008,10 @@ public class ProdutoVIEW extends javax.swing.JFrame {
 
     private void jComboBoxTipo_tamanhoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxTipo_tamanhoItemStateChanged
         // TODO add your handling code here:
-        if (jComboBoxTipo_tamanho.getSelectedItem().equals("ESPECIAL")){
+        if ( (jComboBoxTipo_tamanho.getSelectedItem().equals("ESPECIAL")) 
+           || (jComboBoxTipo_tamanho.getSelectedItem()=="BABY") 
+                || (jComboBoxTipo_tamanho.getSelectedItem()=="KIDS")
+           ){
             txt_qtd_tamanho.setText("3");
         }else{
             txt_qtd_tamanho.setText("4");

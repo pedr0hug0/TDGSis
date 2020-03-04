@@ -9,6 +9,7 @@ order by pro.descricao, pro.codigo]]>
 	</queryString>
 	<field name="descricao" class="java.lang.String"/>
 	<field name="codigo" class="java.lang.String"/>
+	<sortField name="descricao"/>
 	<sortField name="codigo"/>
 	<group name="Descricao" keepTogether="true">
 		<groupExpression><![CDATA[$F{descricao}]]></groupExpression>

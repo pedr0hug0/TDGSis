@@ -596,8 +596,8 @@ public boolean atualizar(CorteDTO corteDTO){
                                     "from corte c\n" +
                                     "INNER JOIN produtos pro\n" +
                                     "on c.codigo = pro.codigo where pro.descricao = '"+descricao+"' and c.infesto = '"+infesto+"' order by id desc;";
-                        rs = stmt.executeQuery(sql);
-                        System.out.println(sql);
+                        rs = stmt.executeQuery(sql.toUpperCase());
+                        System.out.println(sql.toUpperCase());
                     
 		
                         while (rs.next()) {

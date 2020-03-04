@@ -400,6 +400,9 @@ public class ProducaoVIEW extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_ref_pesquisarKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_ref_pesquisarKeyReleased(evt);
+            }
         });
 
         btn_Pesquisar.setText("Pesquisar");
@@ -1011,6 +1014,11 @@ public class ProducaoVIEW extends javax.swing.JFrame {
                                 }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txt_ref_pesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ref_pesquisarKeyReleased
+        // TODO add your handling code here:
+        txt_ref_pesquisar.setText(txt_ref_pesquisar.getText().toUpperCase());
+    }//GEN-LAST:event_txt_ref_pesquisarKeyReleased
     
     
     /* 

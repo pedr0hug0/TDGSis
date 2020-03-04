@@ -66,7 +66,7 @@ public ResultSet relatorio_vendas(String tipo_pedido) {
                                                 ")\n" +
                                                 "AS RELATORIO_VENDAS, produtos pro\n" +
                                                 "where relatorio_vendas.codigo = pro.codigo\n" +
-                                                "GROUP BY pro.descricao, relatorio_vendas.CODIGO, COR ORDER BY  CODIGO, COR;");
+                                                "GROUP BY pro.descricao, relatorio_vendas.CODIGO, COR ORDER BY DESCRICAO, CODIGO, COR;");
                     /*
                             rs = stmt.executeQuery("SELECT PRO.DESCRICAO, relatorio_vendas.CODIGO, COR, SUM(total_venda) AS Vendido, sum(total_Corte) as Cortado FROM (select ip.codigo, ip.cor, sum(total) as total_VENDA, null as total_corte\n" +
                                                     "from item_pedido ip\n" +

@@ -28,6 +28,7 @@ public class ProdutoDTO {
   private String ref_alterar;
   private Integer especial;
   private String categoria;
+  private String categoria_antiga;
   private String grade;
 
     public String getRef_alterar() {
@@ -276,6 +277,20 @@ public class ProdutoDTO {
      */
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    /**
+     * @return the categoria_antiga
+     */
+    public String getCategoria_antiga() {
+        return categoria_antiga;
+    }
+
+    /**
+     * @param categoria_antiga the categoria_antiga to set
+     */
+    public void setCategoria_antiga(String categoria_antiga) {
+        this.categoria_antiga = categoria_antiga;
     }
 
     /**

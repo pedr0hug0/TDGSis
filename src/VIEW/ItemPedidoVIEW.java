@@ -1094,6 +1094,16 @@ public class ItemPedidoVIEW extends javax.swing.JFrame {
                 txt_refActionPerformed(evt);
             }
         });
+        txt_ref.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txt_refPropertyChange(evt);
+            }
+        });
+        txt_ref.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_refKeyReleased(evt);
+            }
+        });
 
         jLabel8.setText("Qtd:");
 
@@ -5411,6 +5421,28 @@ public class ItemPedidoVIEW extends javax.swing.JFrame {
                         //selecionar grade 1 1 1
                         break;
                     }
+                    case "BABY":
+                    {
+                        txt_qtd_tamanho.setText(p.getQtd_tamanho().toString());
+
+                        //se for especial, desativar t4
+                        txt_t4_grade.setEnabled(false);
+                        txt_t4_grade.setText("0");
+
+                        //selecionar grade 1 1 1
+                        break;
+                    }
+                    case "KIDS":
+                    {
+                        txt_qtd_tamanho.setText(p.getQtd_tamanho().toString());
+
+                        //se for especial, desativar t4
+                        txt_t4_grade.setEnabled(false);
+                        txt_t4_grade.setText("0");
+
+                        //selecionar grade 1 1 1
+                        break;
+                    }
                     case "JUVENIL":
                     {
                         System.out.println("Entrou no juvenil");
@@ -5569,6 +5601,16 @@ public class ItemPedidoVIEW extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btn_remove_cor_excluirActionPerformed
+
+    private void txt_refKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_refKeyReleased
+        // TODO add your handling code here:
+        txt_ref.setText(txt_ref.getText().toUpperCase());
+        
+    }//GEN-LAST:event_txt_refKeyReleased
+
+    private void txt_refPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txt_refPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_refPropertyChange
     //adiciona itens no banco e na jList passando Y(cor que está) e qtd de cada tamanho
     public void copia_itens_pedido(){
         // instanciando a classe Usuario do pacote modelo e criando seu objeto usuarios

@@ -65,8 +65,8 @@ public class ProdutoCoresDAO {
                     String sql;
                     
                     sql = "select id, codigo, cor, id_cor from produto_cores where codigo like '"+codigo+"';";
-                    rs = stmt.executeQuery(sql);
-                    System.out.println(sql);
+                    rs = stmt.executeQuery(sql.toUpperCase());
+                    System.out.println(sql.toUpperCase());
                    
                         while (rs.next()) {
 				CoresDTO produto_cor = new CoresDTO();

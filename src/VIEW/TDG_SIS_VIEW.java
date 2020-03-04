@@ -33,7 +33,8 @@ public static String banco_selecionado, ip_servidor, usuario_banco, senha_banco,
         
         
         setLocationRelativeTo( null );
-        ip_servidor = "192.168.1.155";
+        //ip_servidor = "192.168.1.155";
+        ip_servidor = "localhost";
         usuario_banco = "postgres";
         senha_banco = "dba";
         banco_principal = "TDG_SIS";

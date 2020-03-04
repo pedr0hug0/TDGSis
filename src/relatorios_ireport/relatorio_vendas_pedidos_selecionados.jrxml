@@ -58,6 +58,7 @@ GROUP BY pro.descricao, relatorio_vendas.CODIGO, COR ORDER BY  CODIGO, COR;]]>
 	<field name="cor" class="java.lang.String"/>
 	<field name="vendido" class="java.math.BigDecimal"/>
 	<field name="cortado" class="java.math.BigDecimal"/>
+	<sortField name="descricao"/>
 	<sortField name="codigo"/>
 	<variable name="saldo_cores" class="java.lang.Integer" resetType="Group" resetGroup="cor" calculation="Sum">
 		<variableExpression><![CDATA[($F{cortado}!= null ? $F{cortado} : 0)-($F{vendido}!= null ? $F{vendido} : 0)]]></variableExpression>

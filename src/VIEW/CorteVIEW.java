@@ -213,6 +213,17 @@ public class CorteVIEW extends javax.swing.JFrame {
                 txt_refFocusLost(evt);
             }
         });
+        txt_ref.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_refKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_refKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_refKeyTyped(evt);
+            }
+        });
 
         jComboBox_Cor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1406,10 +1417,10 @@ public class CorteVIEW extends javax.swing.JFrame {
         
         
         String tipo_tamanho = txt_tipo_tamanho.getText();
-        if (tipo_tamanho.equals("ESPECIAL")){
+        if (  tipo_tamanho.equals("ESPECIAL") || tipo_tamanho.equals("BABY") || tipo_tamanho.equals("KIDS")){
                         txt_t4_manual.setEnabled(false);
                         txt_t4_manual.setText("0");
-        }else{//se nao for especial
+        }else{//se nao for especial/BABY/KIDS
                         txt_t4_manual.setEnabled(true);
                         
         }
@@ -1438,6 +1449,32 @@ public class CorteVIEW extends javax.swing.JFrame {
                 case "ESPECIAL":
                 {
                     //se for especial, desativar t4
+                    jPanel_Grade_Especial.setVisible(true);
+                    jPanel_Grade.setVisible(false);
+                    //txt_t4.setText("0"); //nao tem manual.
+                    jPanel_manual.setVisible(false);
+                    
+                    jRadioButton111.setSelected(true);
+                    //selecionar grade 1 1 1
+                     grade = "111";//seta grade para gravar, se mudar manual, a grade muda pelo action()
+                    break;
+                }
+                case "BABY":
+                {
+                    //se for BABY, desativar t4
+                    jPanel_Grade_Especial.setVisible(true);
+                    jPanel_Grade.setVisible(false);
+                    //txt_t4.setText("0"); //nao tem manual.
+                    jPanel_manual.setVisible(false);
+                    
+                    jRadioButton111.setSelected(true);
+                    //selecionar grade 1 1 1
+                     grade = "111";//seta grade para gravar, se mudar manual, a grade muda pelo action()
+                    break;
+                }
+                case "KIDS":
+                {
+                    //se for KIDS, desativar t4
                     jPanel_Grade_Especial.setVisible(true);
                     jPanel_Grade.setVisible(false);
                     //txt_t4.setText("0"); //nao tem manual.
@@ -1698,7 +1735,7 @@ public class CorteVIEW extends javax.swing.JFrame {
                     t2 = Integer.parseInt(txt_t2_manual.getText());
                     t3 = Integer.parseInt(txt_t3_manual.getText());
 
-                    if (tipo.equals("ESPECIAL")){
+                    if (tipo.equals("ESPECIAL") || tipo.equals("BABY") || tipo.equals("KIDS")){
                         t4 = 0;
                     }else{
                         t4 = Integer.parseInt(txt_t4_manual.getText());
@@ -1713,8 +1750,8 @@ public class CorteVIEW extends javax.swing.JFrame {
         else{//se não (grade selecionada)
             
         
-            if (tipo.equals("ESPECIAL")) {
-                    System.err.println("Especial");
+            if (tipo.equals("ESPECIAL")  || tipo.equals("BABY") || tipo.equals("KIDS") ) {
+                    System.err.println("Especial/BABY/KIDS");
                     grade_especial();//faz conta certa de sobra
             }else{
                 System.err.println("Normal / Juvenil");
@@ -2898,6 +2935,22 @@ public class CorteVIEW extends javax.swing.JFrame {
         // TODO add your handling code here:
         new ProdutoFichaVIEW().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txt_refKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_refKeyTyped
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_txt_refKeyTyped
+
+    private void txt_refKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_refKeyReleased
+        // TODO add your handling code here:
+        txt_ref.setText(txt_ref.getText().toUpperCase());
+    }//GEN-LAST:event_txt_refKeyReleased
+
+    private void txt_refKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_refKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txt_refKeyPressed
     public void zerar_tabelas(){
          DefaultTableModel modelVenda =  (DefaultTableModel) jTable_VENDA_CORTE.getModel();
                      modelVenda.setNumRows(0);

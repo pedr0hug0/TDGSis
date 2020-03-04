@@ -209,8 +209,11 @@ public class ProdutoDAO{
                     
                     Conexao.ConectDB();
                     Statement stmt = Conexao.con.createStatement();
+                    String sql;
                     ResultSet rs;
-                    rs = stmt.executeQuery("SELECT * FROM produtos where codigo like '"+ref+"%' order by codigo");
+                    
+                    sql = "SELECT * FROM produtos where codigo like '"+ref+"%' order by codigo";
+                    rs = stmt.executeQuery(sql.toUpperCase());
                     
                     System.out.println("SELECT * FROM produtos where codigo like '"+ref+"%' order by codigo");
 		
@@ -283,9 +286,8 @@ public class ProdutoDAO{
 
 
     }//fim atualizar
-   
-
-
+ 
+ 
  
   public boolean excluir(ProdutoDTO produtoDTO){
 		try{
@@ -324,7 +326,7 @@ public class ProdutoDAO{
                     String sql;
                    
                     sql = "select distinct descricao from produtos order by descricao;";
-                    rs = stmt.executeQuery(sql);
+                    rs = stmt.executeQuery(sql.toUpperCase());
                     System.out.println(sql);
                     
                     while (rs.next()) {
@@ -471,6 +473,65 @@ public class ProdutoDAO{
 		return produtos;
 	}//fim get Dados Categoria    
         
+            
+        //Atualizar Categoria
+        public boolean atualizar_categoria(ProdutoDTO produtoDTO){
+		try{
+		
+                    Conexao_TDG_SIS.ConectDB();
+                    Statement stmt = Conexao_TDG_SIS.con.createStatement();
+                    String comando = "update produto_categoria set "+		    		
+				    "categoria = '" + produtoDTO.getCategoria()+ "'," +
+                                    "rendimento = " + produtoDTO.getRendimento()+ "," +
+                                    "tipo_tamanho = '" + produtoDTO.getTipo_tamanho()+ "'," +
+                                    "grade = '" + produtoDTO.getGrade()+ "' " +
+                                    "where id = "+produtoDTO.getId()+ ";";
+                  
+			System.out.println(comando);
+			stmt.execute(comando.toUpperCase());
+			Conexao_TDG_SIS.con.commit();
+			stmt.close();
+			Conexao_TDG_SIS.CloseDB();
+                        return true;		
+                    
+		}
+		
+		catch (Exception e){
+			System.out.println("Erro ao alterar/atualizar categoria");
+                        System.out.println(e.getMessage());
+			return false;
+		}
+    } //fim alterar/atualizar  
+        
+    //Atualizar descrição produtos Categoria
+        public boolean atualizar_descricao_produtos(ProdutoDTO produtoDTO){
+		try{
+		
+                    Conexao.ConectDB();
+                    Statement stmt = Conexao.con.createStatement();
+                    String comando = "update produtos set "+		    		
+				    "descricao = '" + produtoDTO.getCategoria()+ "' " +
+                                    "where descricao = '"+produtoDTO.getCategoria_antiga()+ "';";
+                  
+			System.out.println(comando);
+			stmt.execute(comando.toUpperCase());
+			Conexao.con.commit();
+			stmt.close();
+			Conexao.CloseDB();
+                        return true;		
+                    
+		}
+		
+		catch (Exception e){
+			System.out.println("Erro ao alterar/atualizar descricação dos produtos ao alterar categoria");
+                        System.out.println(e.getMessage());
+			return false;
+		}
+    } //fim alterar/atualizar   
+            
+            
+            
+    //fim alterar categoria
             
    /*exportar para excel
   public void relatorioProdutos() {

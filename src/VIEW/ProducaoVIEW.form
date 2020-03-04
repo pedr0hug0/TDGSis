@@ -328,6 +328,7 @@
         <Component class="javax.swing.JTextField" name="txt_ref_pesquisar">
           <Events>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_ref_pesquisarKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_ref_pesquisarKeyReleased"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//self select&#xa;txt_ref_pesquisar.addFocusListener(new java.awt.event.FocusAdapter() {  &#xa;                    @Override  &#xa;                    public void focusGained(java.awt.event.FocusEvent evt) {  &#xa;                        txt_ref_pesquisar.selectAll();  &#xa;                    }  &#xa;                });"/>

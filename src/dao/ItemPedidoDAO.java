@@ -57,9 +57,10 @@ public class ItemPedidoDAO {
                     Conexao.ConectDB();
                     Statement stmt = Conexao.con.createStatement();
                     ResultSet rs = null;
-                    rs = stmt.executeQuery("SELECT * FROM produtos where codigo = '"+ref+"' order by codigo");
+                    String sql = "SELECT * FROM produtos where codigo = '"+ref+"' order by codigo";
+                    rs = stmt.executeQuery(sql.toUpperCase());
                     
-                    System.out.println("SELECT * FROM produtos where codigo = '"+ref+"' order by codigo");
+                    System.out.println(sql.toUpperCase());
                     
                     
                     

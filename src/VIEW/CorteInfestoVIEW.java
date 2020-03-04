@@ -252,6 +252,12 @@ public class CorteInfestoVIEW extends javax.swing.JFrame {
             }
         });
 
+        txt_ref_pesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_ref_pesquisarKeyReleased(evt);
+            }
+        });
+
         jLabel5.setText("REF:");
 
         jButton3.setText("PESQUISAR");
@@ -376,6 +382,11 @@ public class CorteInfestoVIEW extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txt_ref_pesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ref_pesquisarKeyReleased
+        // TODO add your handling code here:
+        txt_ref_pesquisar.setText(txt_ref_pesquisar.getText().toUpperCase());
+    }//GEN-LAST:event_txt_ref_pesquisarKeyReleased
     
     private void soltar_infesto(){
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

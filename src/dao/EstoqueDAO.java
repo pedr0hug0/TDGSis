@@ -72,7 +72,8 @@ public boolean adicionaEstoque(EstoqueDTO estoqueDTO){
                     Conexao.ConectDB();
                     Statement stmt = Conexao.con.createStatement();
                     ResultSet rs = null;
-                    rs = stmt.executeQuery("SELECT qtd_cores, qtd_tamanho, tipo_tamanho, costas, manga, descricao FROM produtos where codigo = '"+ref+"';");
+                    String sql = "SELECT qtd_cores, qtd_tamanho, tipo_tamanho, costas, manga, descricao FROM produtos where codigo = '"+ref+"';";
+                    rs = stmt.executeQuery(sql.toUpperCase());
                     
                     System.out.println("SELECT qtd_cores, qtd_tamanho, tipo_tamanho, costas, manga, descricao FROM produtos where codigo = '"+ref+"';");
                     

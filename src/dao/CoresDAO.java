@@ -65,7 +65,7 @@ public class CoresDAO {
                     String sql;
                    
                     sql = "select id, cor, categoria from cores order by categoria;";
-                    rs = stmt.executeQuery(sql);
+                    rs = stmt.executeQuery(sql.toUpperCase());
                     System.out.println(sql);
                    
                     
@@ -124,7 +124,7 @@ public class CoresDAO {
                     String sql;
                    
                     sql = "select distinct categoria from cores order by categoria desc;";
-                    rs = stmt.executeQuery(sql);
+                    rs = stmt.executeQuery(sql.toUpperCase());
                     System.out.println(sql);
                    
                     
@@ -155,7 +155,7 @@ public class CoresDAO {
                    
                     //sql = "select id, cor, categoria from cores where categoria = '"+categoria+"';";
                     sql = "select id, cor, categoria from cores where categoria = '"+categoria+"' ORDER BY COR;";
-                    rs = stmt.executeQuery(sql);
+                    rs = stmt.executeQuery(sql.toUpperCase());
                     System.out.println(sql);
                    
                     
@@ -189,7 +189,7 @@ public class CoresDAO {
                     String sql;
                     sql = "select cor from cores where id = "+id_cor;
                     
-                    rs = stmt.executeQuery(sql);
+                    rs = stmt.executeQuery(sql.toUpperCase());
                     System.out.println(sql);
                    
                     

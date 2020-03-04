@@ -136,10 +136,10 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btn_etq_sortida = new javax.swing.JButton();
         jCheckBox_visualizar_avulsa = new javax.swing.JCheckBox();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel_t1 = new javax.swing.JLabel();
+        jLabel_t2 = new javax.swing.JLabel();
+        jLabel_t3 = new javax.swing.JLabel();
+        jLabel_t4 = new javax.swing.JLabel();
         txt_t1_avulso = new javax.swing.JTextField();
         txt_t2_avulso = new javax.swing.JTextField();
         txt_t3_avulso = new javax.swing.JTextField();
@@ -150,6 +150,8 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
         jRadioButton_juvenil = new javax.swing.JRadioButton();
         jRadioButton_especial = new javax.swing.JRadioButton();
         jRadioButton_outro = new javax.swing.JRadioButton();
+        jRadioButton_kids = new javax.swing.JRadioButton();
+        jRadioButton_baby = new javax.swing.JRadioButton();
         btn_todas_ref = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
@@ -338,7 +340,7 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_extra)
-                            .addComponent(txt_etq_por_pagina, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                            .addComponent(txt_etq_por_pagina, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -412,6 +414,9 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_ref_pesquisarKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_ref_pesquisarKeyReleased(evt);
+            }
         });
 
         btn_Pesquisar.setText("Pesquisar");
@@ -465,18 +470,25 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
         jCheckBox_visualizar_avulsa.setText("Visualizar");
         jCheckBox_visualizar_avulsa.setFocusable(false);
 
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("10/P/G1");
-        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel_t1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_t1.setText("10/P/G1");
+        jLabel_t1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel_t1.setMinimumSize(new java.awt.Dimension(6, 20));
+        jLabel_t1.setPreferredSize(new java.awt.Dimension(41, 14));
 
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("12/M/G2");
+        jLabel_t2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_t2.setText("12/M/G2");
+        jLabel_t2.setMinimumSize(new java.awt.Dimension(6, 20));
 
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("14/G/G3");
+        jLabel_t3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_t3.setText("14/G/G3");
+        jLabel_t3.setMinimumSize(new java.awt.Dimension(6, 20));
+        jLabel_t3.setPreferredSize(new java.awt.Dimension(41, 14));
 
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("16/GG");
+        jLabel_t4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_t4.setText("16/GG");
+        jLabel_t4.setMinimumSize(new java.awt.Dimension(6, 20));
+        jLabel_t4.setPreferredSize(new java.awt.Dimension(41, 14));
 
         txt_t1_avulso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_t1_avulso.setText("0");
@@ -503,6 +515,9 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
         txt_ref_pesquisar1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_ref_pesquisar1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_ref_pesquisar1KeyReleased(evt);
             }
         });
 
@@ -539,6 +554,22 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton_kids);
+        jRadioButton_kids.setText("KIDS");
+        jRadioButton_kids.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton_kidsActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton_baby);
+        jRadioButton_baby.setText("BABY");
+        jRadioButton_baby.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton_babyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -547,40 +578,45 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txt_t1_avulso, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_t1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_t1_avulso))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_t2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_t2_avulso))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_t3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_t3_avulso))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_t4_avulso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel_t4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(txt_t4_avulso)
+                                .addGap(2, 2, 2))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_ref_pesquisar1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox_visualizar_avulsa)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_etq_sortida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jRadioButton_adulto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton_juvenil)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton_especial))
-                            .addComponent(jRadioButton_outro))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jRadioButton_baby, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jRadioButton_adulto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jRadioButton_juvenil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jRadioButton_kids, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jRadioButton_especial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jRadioButton_outro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -593,10 +629,10 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                     .addComponent(jCheckBox_visualizar_avulsa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel_t1, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(jLabel_t2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_t3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_t4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_t1_avulso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -609,7 +645,10 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                     .addComponent(jRadioButton_juvenil)
                     .addComponent(jRadioButton_especial))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton_outro)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton_outro)
+                    .addComponent(jRadioButton_kids)
+                    .addComponent(jRadioButton_baby))
                 .addGap(1, 1, 1)
                 .addComponent(btn_etq_sortida))
         );
@@ -649,13 +688,13 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn_todas_ref, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jcombobox_imp, 0, 1, Short.MAX_VALUE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -910,6 +949,16 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                     tam_t2 = "12";
                     tam_t3 = "14";
                     tam_t4 = "16";
+                }else if (tipo_tamanho.equals("BABY")){
+                    tam_t1 = "1";
+                    tam_t2 = "2";
+                    tam_t3 = "3";
+                    tam_t4 = "-";
+                }else if (tipo_tamanho.equals("KIDS")){
+                    tam_t1 = "4";
+                    tam_t2 = "6";
+                    tam_t3 = "8";
+                    tam_t4 = "-";
                 }else{//ESPECIAL
                     tam_t1 = "G1";
                     tam_t2 = "G2";
@@ -960,7 +1009,10 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
         
         
         
-        if ( (jRadioButton_adulto.isSelected()) || (jRadioButton_juvenil.isSelected()) || (jRadioButton_especial.isSelected()) || (jRadioButton_outro.isSelected()) ){
+        if ( (jRadioButton_adulto.isSelected()) || (jRadioButton_juvenil.isSelected())
+                 || (jRadioButton_especial.isSelected()) || (jRadioButton_baby.isSelected())
+                 || (jRadioButton_kids.isSelected())  || (jRadioButton_outro.isSelected()) 
+           ){
             
             //fazer
                 String codigo = null;
@@ -983,8 +1035,13 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                     op = "2";
                 }else if (jRadioButton_especial.isSelected()){
                     op = "3";
-                }else{
-                    op = "4";//outro
+                }else if (jRadioButton_baby.isSelected()){
+                    op = "4";
+                }else if (jRadioButton_kids.isSelected()){
+                    op = "5";
+                }
+                else{
+                    op = "10";//outro
                 }
                 
                 switch (op) {
@@ -1006,7 +1063,19 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                         tam_t2 = "G2";
                         tam_t3 = "G3";
                         break;
-                    case "4"://outro
+                    case "4":
+                        //baby
+                        tam_t1 = "1";
+                        tam_t2 = "2";
+                        tam_t3 = "3";
+                        break;
+                    case "5":
+                        //kids
+                        tam_t1 = "4";
+                        tam_t2 = "6";
+                        tam_t3 = "8";
+                        break;
+                    case "10"://outro
                         tam_t1 = JOptionPane.showInputDialog("DIGITE O TAMANHO:\nEXEMPLO: P ou 10 ou G1, etc.");  
                         t1 = Integer.parseInt(JOptionPane.showInputDialog("DIGITE A QUANTIDADE:"));  
                         break;
@@ -1020,7 +1089,7 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                    try {
                             //etiqueta_ref_tamanho1 = 1 forncedor e tamanho2 de outro fornecedor
                             //tem que mudar no imprimir() tambem
-                            String arquivo = "relatorios_ireport/etiqueta_ref_tamanho2.jasper";
+                            String arquivo = "relatorios_ireport/etiqueta_ref_tamanho.jasper";
                             setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                             
                             
@@ -1115,6 +1184,8 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
             jRadioButton_adulto.setSelected(false);
             jRadioButton_juvenil.setSelected(false);
             jRadioButton_especial.setSelected(false);
+            jRadioButton_baby.setSelected(false);
+            jRadioButton_kids.setSelected(false);
 
             //pegar tipo_tamanho
             ItemPedidoDAO dao = new ItemPedidoDAO();
@@ -1130,6 +1201,26 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                     case "ESPECIAL":
                     {
                         jRadioButton_especial.setSelected(true);
+                        txt_t4_avulso.setText("0");
+                        txt_t4_avulso.setEnabled(false);
+                        
+                        txt_t1_avulso.requestFocus();
+                        
+                        break;
+                    }
+                    case "BABY":
+                    {
+                        jRadioButton_baby.setSelected(true);
+                        txt_t4_avulso.setText("0");
+                        txt_t4_avulso.setEnabled(false);
+                        
+                        txt_t1_avulso.requestFocus();
+                        
+                        break;
+                    }
+                    case "KIDS":
+                    {
+                        jRadioButton_kids.setSelected(true);
                         txt_t4_avulso.setText("0");
                         txt_t4_avulso.setEnabled(false);
                         
@@ -1173,6 +1264,13 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
     
     private void jRadioButton_adultoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_adultoActionPerformed
         // TODO add your handling code here:
+            
+        //    jLabel_t1.setText("P");
+        //    jLabel_t2.setText("M");
+        //    jLabel_t3.setText("G");
+        //    jLabel_t4.setText("GG");
+            
+            
             txt_t4_avulso.setEnabled(true);
             btn_etq_sortida.requestFocus();
          
@@ -1192,12 +1290,21 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
 
     private void jRadioButton_juvenilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_juvenilActionPerformed
         // TODO add your handling code here:
+        //    jLabel_t1.setText("10");
+        //    jLabel_t2.setText("12");
+        //    jLabel_t3.setText("14");
+        //    jLabel_t4.setText("16");
         txt_t4_avulso.setEnabled(true);
         btn_etq_sortida.requestFocus();
     }//GEN-LAST:event_jRadioButton_juvenilActionPerformed
 
     private void jRadioButton_especialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_especialActionPerformed
         // TODO add your handling code here:
+        //    jLabel_t1.setText("G1");
+        //    jLabel_t2.setText("G2");
+        //    jLabel_t3.setText("G3");
+        //    jLabel_t4.setText("-");
+            
         txt_t4_avulso.setText("0");
         txt_t4_avulso.setEnabled(false);
         btn_etq_sortida.requestFocus();
@@ -1242,6 +1349,8 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
             jRadioButton_adulto.setSelected(false);
             jRadioButton_juvenil.setSelected(false);
             jRadioButton_especial.setSelected(false);
+            jRadioButton_baby.setSelected(false);
+            jRadioButton_kids.setSelected(false);
             int erro = 0;
             //pegar tipo_tamanho
             
@@ -1261,6 +1370,26 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
                     case "ESPECIAL":
                     {
                         jRadioButton_especial.setSelected(true);
+                        txt_t4_avulso.setText("0");
+                        txt_t4_avulso.setEnabled(false);
+                        
+                        txt_t1_avulso.requestFocus();
+                        
+                        break;
+                    }
+                    case "BABY":
+                    {
+                        jRadioButton_baby.setSelected(true);
+                        txt_t4_avulso.setText("0");
+                        txt_t4_avulso.setEnabled(false);
+                        
+                        txt_t1_avulso.requestFocus();
+                        
+                        break;
+                    }
+                    case "KIDS":
+                    {
+                        jRadioButton_kids.setSelected(true);
                         txt_t4_avulso.setText("0");
                         txt_t4_avulso.setEnabled(false);
                         
@@ -1307,6 +1436,40 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
     private void jRadioButton_outroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_outroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton_outroActionPerformed
+
+    private void jRadioButton_kidsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_kidsActionPerformed
+        // TODO add your handl-ing code here:
+        //    jLabel_t1.setText("4");
+        //    jLabel_t2.setText("6");
+        //    jLabel_t3.setText("8");
+        //    jLabel_t4.setText("");
+        
+        txt_t4_avulso.setText("0");
+        txt_t4_avulso.setEnabled(false);
+        btn_etq_sortida.requestFocus();
+    }//GEN-LAST:event_jRadioButton_kidsActionPerformed
+
+    private void jRadioButton_babyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_babyActionPerformed
+        // TODO add your handling code here:
+        //    jLabel_t1.setText("1");
+        //    jLabel_t2.setText("2");
+        //    jLabel_t3.setText("3");
+        //    jLabel_t4.setText("-");
+            
+        txt_t4_avulso.setText("0");
+        txt_t4_avulso.setEnabled(false);
+        btn_etq_sortida.requestFocus();
+    }//GEN-LAST:event_jRadioButton_babyActionPerformed
+
+    private void txt_ref_pesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ref_pesquisarKeyReleased
+        // TODO add your handling code here:
+        txt_ref_pesquisar.setText(txt_ref_pesquisar.getText().toUpperCase());
+    }//GEN-LAST:event_txt_ref_pesquisarKeyReleased
+
+    private void txt_ref_pesquisar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ref_pesquisar1KeyReleased
+        // TODO add your handling code here:
+        txt_ref_pesquisar1.setText(txt_ref_pesquisar1.getText().toUpperCase());
+    }//GEN-LAST:event_txt_ref_pesquisar1KeyReleased
     
     public void imprimir_sortido(String codigo, String tamanho, String arquivo, Integer qtd) throws JRException{
                 
@@ -1396,8 +1559,8 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
     
     public void imprimir(String codigo, String tamanho, Integer qtd, String descricao) throws JRException{
         
-        String arquivo = "relatorios_ireport/etiqueta_ref_tamanho2.jasper"; //arquivo de relatorio
-        //String arquivo = "relatorios_ireport/etiqueta_ref_tamanho.jasper"; //arquivo de relatorio
+        //String arquivo = "relatorios_ireport/etiqueta_ref_tamanho2.jasper"; //arquivo de relatorio
+        String arquivo = "relatorios_ireport/etiqueta_ref_tamanho.jasper"; //arquivo de relatorio
         java.io.InputStream file = getClass().getClassLoader().getResourceAsStream(arquivo); //carrego o arquivo
 
         //NUMERO DE REPETIÇÕES
@@ -1603,9 +1766,6 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox_visualizar_avulsa;
     private javax.swing.JComboBox jComboBox_Processo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -1615,13 +1775,18 @@ public class EtiquetaVIEW extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel_t1;
+    private javax.swing.JLabel jLabel_t2;
+    private javax.swing.JLabel jLabel_t3;
+    private javax.swing.JLabel jLabel_t4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton_adulto;
+    private javax.swing.JRadioButton jRadioButton_baby;
     private javax.swing.JRadioButton jRadioButton_especial;
     private javax.swing.JRadioButton jRadioButton_juvenil;
+    private javax.swing.JRadioButton jRadioButton_kids;
     private javax.swing.JRadioButton jRadioButton_outro;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

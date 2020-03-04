@@ -101,7 +101,7 @@ public class EtiquetaDAO {
                                     "   ON c.codigo = po.codigo\n"+
                                     "        where c.codigo like '"+codigo+"'\n" +
                                     "        order by c.id";
-                        rs = stmt.executeQuery(sql);
+                        rs = stmt.executeQuery(sql.toUpperCase());
                         System.out.println(sql);
                     }
                     else{
@@ -113,7 +113,7 @@ public class EtiquetaDAO {
                                     "   ON c.codigo = po.codigo\n"+
                                     "        where p.etiqueta = '"+status+"' and c.codigo like '"+codigo+"'\n" +
                                     "        order by c.id";
-                        rs = stmt.executeQuery(sql);
+                        rs = stmt.executeQuery(sql.toUpperCase());
                         System.out.println(sql);
                     }
                     
