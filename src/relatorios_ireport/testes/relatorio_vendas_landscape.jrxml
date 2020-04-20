@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="n_pedido" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="e04a8476-eca6-4135-99e3-b2228199f35b">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="saldo_codigo">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{saldo_cod}<0]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{saldo_cod}<80]]></conditionExpression>
+			<style forecolor="#FF6600"/>
+		</conditionalStyle>
+	</style>
+	<style name="saldo_cor">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{saldo_cores}<=0]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{saldo_cores}<80]]></conditionExpression>
+			<style forecolor="#FF6600"/>
+		</conditionalStyle>
+	</style>
+	<style name="saldo_descricao">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{total_saldo_descricao}<=0]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{total_saldo_descricao}<80]]></conditionExpression>
+			<style forecolor="#FF6600"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="tipo_pedido" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT PRO.DESCRICAO, relatorio_vendas.CODIGO, COR, SUM(total_venda) AS Vendido, sum(total_Corte) as Cortado FROM (select ip.codigo, ip.cor, sum(total) as total_VENDA, null as total_corte
+from item_pedido ip
+INNER JOIN pedidos p
+	ON ip.n_pedido = p.n_pedido
+	WHERE p.tipo_pedido = $P{tipo_pedido} 
+	group by ip.codigo, ip.cor
+UNION
+select c.codigo, c.cor, null as total_VENDA, sum(qtd) as total_Corte
+from corte c
+WHERE c.tipo_pedido = $P{tipo_pedido} 
+group by c.codigo, c.cor
+order by codigo)
+AS RELATORIO_VENDAS, produtos pro
+where relatorio_vendas.codigo = pro.codigo
+GROUP BY pro.descricao, relatorio_vendas.CODIGO, COR ORDER BY  CODIGO, COR;]]>
+	</queryString>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="cor" class="java.lang.String"/>
+	<field name="vendido" class="java.math.BigDecimal"/>
+	<field name="cortado" class="java.math.BigDecimal"/>
+	<sortField name="codigo"/>
+	<variable name="saldo_cores" class="java.lang.Integer" resetType="Group" resetGroup="cor" calculation="Sum">
+		<variableExpression><![CDATA[($F{cortado}!= null ? $F{cortado} : 0)-($F{vendido}!= null ? $F{vendido} : 0)]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="vendido_cod" class="java.lang.Integer" resetType="Group" resetGroup="Codigo" calculation="Sum">
+		<variableExpression><![CDATA[$F{vendido}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="cortado_cod" class="java.lang.Integer" resetType="Group" resetGroup="Codigo" calculation="Sum">
+		<variableExpression><![CDATA[$F{cortado}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="saldo_cod" class="java.lang.Integer" resetType="Group" resetGroup="Codigo" calculation="Sum">
+		<variableExpression><![CDATA[($F{cortado}!= null ? $F{cortado} : 0)-($F{vendido}!= null ? $F{vendido} : 0)]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_vendido_descricao" class="java.lang.Integer" resetType="Group" resetGroup="Descricao" calculation="Sum">
+		<variableExpression><![CDATA[$F{vendido}!= null ? $F{vendido} : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="total_cortado_descricao" class="java.lang.Integer" resetType="Group" resetGroup="Descricao" calculation="Sum">
+		<variableExpression><![CDATA[$F{cortado}!= null ? $F{cortado} : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="vendido_final" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{vendido}]]></variableExpression>
+	</variable>
+	<variable name="cortado_final" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{cortado}]]></variableExpression>
+	</variable>
+	<variable name="saldo_final" class="java.lang.Integer">
+		<variableExpression><![CDATA[$V{cortado_final}-$V{vendido_final}]]></variableExpression>
+	</variable>
+	<variable name="total_saldo_descricao" class="java.lang.Integer" resetType="Group" resetGroup="Descricao">
+		<variableExpression><![CDATA[$V{total_cortado_descricao}-$V{total_vendido_descricao}]]></variableExpression>
+	</variable>
+	<group name="Descricao" isReprintHeaderOnEachPage="true" minHeightToStartNewPage="400">
+		<groupExpression><![CDATA[$F{descricao}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement mode="Opaque" x="1" y="0" width="554" height="15" forecolor="#FFFFFF" backcolor="#006699" uuid="adc066c5-feda-4e42-a8ff-9abdee55afa0"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+						<paragraph firstLineIndent="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement mode="Transparent" x="0" y="15" width="555" height="1" forecolor="#CCCCCC" uuid="cff6d0bb-8263-440c-ae86-037e2d848748"/>
+				</line>
+				<staticText>
+					<reportElement mode="Opaque" x="1" y="15" width="43" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="7f2c3ac8-6ece-493d-8386-bf4449f09fab"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[REF]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="44" y="15" width="100" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="71a9dff7-b7ed-48cd-8139-9d1790638445"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[COR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="144" y="15" width="63" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="e610599c-1fb2-4967-afcb-a7699ab9ce57"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VENDIDO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="207" y="15" width="64" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="c1f52dc3-65d7-4b17-aa15-0186de54ae26"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CORTADO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="344" y="15" width="75" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="913fa0c3-b6d9-4d67-80da-858ffc413db0"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[T. VENDA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="271" y="15" width="74" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="17803025-f0ad-4d06-9b38-0c855b25fb72"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALDO COR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="419" y="15" width="75" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="ac1f857d-93a2-4c50-a0ce-e0d04d4c5b87"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[T. CORTE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="494" y="15" width="61" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="1df57cc1-ede9-4fb2-89e0-6470254d619e"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALDO]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="23">
+				<line>
+					<reportElement x="0" y="15" width="555" height="1" forecolor="#CCCCCC" uuid="681bac21-e58e-44e8-8714-7b271deec2c1"/>
+				</line>
+				<staticText>
+					<reportElement mode="Opaque" x="144" y="0" width="64" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="ccae3223-cf70-47d8-b046-803f8b89cdb0"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VENDIDO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="397" y="0" width="63" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="6f4cab99-1462-403f-b8fb-164b6022140c"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SALDO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="271" y="0" width="63" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="066a8fea-a2be-4364-8d66-2a438095f331"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CORTADO:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="208" y="0" width="63" height="15" uuid="3df4cab6-1180-4f84-b66f-9cc9ac3daebe"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{total_vendido_descricao}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Descricao" isBlankWhenNull="true">
+					<reportElement x="333" y="0" width="64" height="15" printWhenGroupChanges="Descricao" uuid="0347570e-f0c9-4151-81b9-3cad63c444e8"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{total_cortado_descricao}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="1" y="0" width="142" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="065760e8-7426-43df-a49c-005284196939"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="Descricao">
+					<reportElement style="saldo_descricao" x="461" y="0" width="94" height="15" printWhenGroupChanges="Descricao" uuid="ee18cdae-fe5e-45a6-a24b-c16823aa2ea8"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{total_saldo_descricao}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Codigo">
+		<groupExpression><![CDATA[$F{codigo}]]></groupExpression>
+		<groupFooter>
+			<band height="1">
+				<line>
+					<reportElement mode="Transparent" x="1" y="0" width="555" height="1" forecolor="#CCCCCC" uuid="0e01779e-8fa1-4b71-9d12-1dc9cc73fcb4"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="cor">
+		<groupExpression><![CDATA[$F{cor}]]></groupExpression>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="19">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="289" height="15" uuid="25af1105-7e1c-45c2-8ec7-fca7c46a45fe"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RELATORIO VENDAS]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="158" height="15" uuid="fe1ad4bb-1bf5-4523-b01c-2e4fd8b92c75"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="289" y="0" width="266" height="15" uuid="5b4e1d01-da60-4655-a3bc-2bd506bf57da"/>
+				<textElement>
+					<font size="11"/>
+					<paragraph firstLineIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tipo_pedido}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<textField>
+				<reportElement x="1" y="0" width="42" height="15" uuid="f57f600f-7b15-426b-83e0-9ac02bfeb337"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="0" width="100" height="15" uuid="779e99ca-d200-4fb3-ad5d-cff70f0c8434"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cor}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="143" y="0" width="64" height="15" uuid="8e349d0c-097d-4e13-90a0-76825716c8d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{vendido}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="207" y="0" width="63" height="15" uuid="b6019b5f-b00c-49e4-aa11-d72607b882e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cortado}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="saldo_cor" x="271" y="0" width="73" height="15" uuid="5cf19fa9-d7c5-44d9-8d1d-33fe9486a4c9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{saldo_cores}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Group" evaluationGroup="Codigo" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="344" y="0" width="75" height="15" isPrintInFirstWholeBand="true" printWhenGroupChanges="Codigo" uuid="b6f0d83c-46f5-40c2-a3ac-24bf6d7aecec">
+					<printWhenExpression><![CDATA[$V{Codigo_COUNT}.toString().equals("1")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{vendido_cod}!= null ? $V{vendido_cod} : 0]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Group" evaluationGroup="Codigo" isBlankWhenNull="true">
+				<reportElement x="419" y="0" width="75" height="15" printWhenGroupChanges="Codigo" uuid="d6f9be6b-7814-4648-a9d2-358e4448a9db">
+					<printWhenExpression><![CDATA[$V{Codigo_COUNT}.toString().equals("1")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{cortado_cod}!= null ? $V{cortado_cod} : 0]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Group" evaluationGroup="Codigo" isBlankWhenNull="true">
+				<reportElement style="saldo_codigo" x="494" y="0" width="62" height="15" printWhenGroupChanges="Codigo" uuid="3b63f280-9d54-4f85-a09f-84f680ae5f3c">
+					<printWhenExpression><![CDATA[$V{Codigo_COUNT}.toString().equals("1")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{saldo_cod}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15">
+			<textField>
+				<reportElement x="289" y="0" width="246" height="15" uuid="9ddf2d95-2f28-4600-a6e2-dbcc2f20a68f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="535" y="0" width="40" height="15" uuid="74ea51d9-aaa1-433d-bef9-ace3a0196c0f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="80">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="12" width="142" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="14740b22-02b4-42f9-a3cc-7be27e614850"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[TOTAL GERAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="143" y="12" width="64" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="2d7905b3-8be1-4032-a0b8-0b6a27ac587e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VENDIDO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="396" y="12" width="64" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="3debc79c-e1ab-4151-ad8d-7cf58c0b7b87"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SALDO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="270" y="12" width="63" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="df2523d0-7b49-4439-81da-f77d51701bfc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CORTADO:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="41" width="555" height="1" forecolor="#CCCCCC" uuid="6714f79a-09ca-4149-95a2-6b9eaa45fa4b"/>
+			</line>
+			<line>
+				<reportElement x="1" y="12" width="554" height="1" forecolor="#CCCCCC" uuid="c2f7acb5-82c1-4127-a65f-0ec8f82c96fc"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="207" y="13" width="63" height="28" uuid="d142949e-52d1-4fe4-9913-785ff50b6367"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{vendido_final}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="333" y="13" width="64" height="28" uuid="3d11ccaa-9c2c-4b1e-b417-e388668ef730"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{cortado_final}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="460" y="13" width="95" height="28" uuid="0c294b93-706d-43bd-ab5b-343a96be4cea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{saldo_final}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

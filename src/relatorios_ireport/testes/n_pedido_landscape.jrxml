@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="n_pedido" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="e04a8476-eca6-4135-99e3-b2228199f35b">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="n_pedido" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="e04a8476-eca6-4135-99e3-b2228199f35b">
 	<property name="ireport.zoom" value="1.1000000000000019"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -7,7 +7,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select ip.codigo, ip.cor, ip.t1, ip.t2, ip.t3, ip.t4, ip.total, pro.descricao, ip.n_pedido, ip.loja from item_pedido ip
+		<![CDATA[select ip.codigo, ip.cor, ip.t1, ip.t2, ip.t3, ip.t4, ip.total, pro.descricao, ip.n_pedido, ip.loja, ip.tamanho, ip.qtd from item_pedido ip
 inner join produtos pro
 on ip.codigo = pro.codigo
 where n_pedido = $P{n_pedido}
@@ -23,6 +23,8 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 	<field name="descricao" class="java.lang.String"/>
 	<field name="n_pedido" class="java.lang.Integer"/>
 	<field name="loja" class="java.lang.String"/>
+	<field name="tamanho" class="java.lang.String"/>
+	<field name="qtd" class="java.lang.Integer"/>
 	<sortField name="descricao"/>
 	<sortField name="codigo"/>
 	<sortField name="loja"/>
@@ -68,9 +70,9 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 	<group name="Descricao">
 		<groupExpression><![CDATA[$F{descricao}]]></groupExpression>
 		<groupHeader>
-			<band height="15">
+			<band height="17">
 				<textField isBlankWhenNull="false">
-					<reportElement mode="Opaque" x="0" y="0" width="555" height="15" backcolor="#F0F0F0" uuid="fa1769e9-80b2-4034-991b-bd832ba3683b"/>
+					<reportElement mode="Opaque" x="0" y="0" width="802" height="15" backcolor="#F0F0F0" uuid="fa1769e9-80b2-4034-991b-bd832ba3683b"/>
 					<textElement verticalAlignment="Middle" markup="none">
 						<font size="11" isBold="false" isUnderline="false" isStrikeThrough="false"/>
 						<paragraph firstLineIndent="6"/>
@@ -80,7 +82,7 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="10">
+			<band height="41">
 				<textField>
 					<reportElement x="119" y="1" width="52" height="9" uuid="114f947b-22db-44d6-ac44-9e5d8e6fe3df"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -135,7 +137,7 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 	<group name="Codigo">
 		<groupExpression><![CDATA[$F{codigo}]]></groupExpression>
 		<groupFooter>
-			<band height="1">
+			<band height="23">
 				<line>
 					<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="555" height="1" forecolor="#CCCCCC" uuid="c11c7958-ea99-417d-90fa-d0e7c4b56ded"/>
 				</line>
@@ -196,7 +198,7 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="16">
+		<band height="51">
 			<staticText>
 				<reportElement mode="Opaque" x="0" y="0" width="43" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="7f2c3ac8-6ece-493d-8386-bf4449f09fab"/>
 				<textElement textAlignment="Center">
@@ -229,25 +231,11 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 				<text><![CDATA[G/14/G3]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="276" y="0" width="52" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="c1f52dc3-65d7-4b17-aa15-0186de54ae26"/>
-				<textElement textAlignment="Center">
-					<font size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[GG/16]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="447" y="0" width="108" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="913fa0c3-b6d9-4d67-80da-858ffc413db0"/>
+				<reportElement mode="Opaque" x="694" y="1" width="108" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="913fa0c3-b6d9-4d67-80da-858ffc413db0"/>
 				<textElement textAlignment="Center">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[LOJA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="328" y="0" width="51" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="17803025-f0ad-4d06-9b38-0c855b25fb72"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[TOTAL]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="172" y="0" width="52" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="59745e13-bdae-45ca-b0dd-951dafc46345"/>
@@ -257,16 +245,31 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 				<text><![CDATA[M/12/G2]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="379" y="0" width="68" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="e764647c-baa3-4e29-82d4-afc258027f9f"/>
+				<reportElement mode="Opaque" x="626" y="0" width="68" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="e764647c-baa3-4e29-82d4-afc258027f9f"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[T. REF]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="271" y="0" width="62" height="14" uuid="dc7e051a-f0f0-4cc8-b26e-be0601bda2cc"/>
+				<textFieldExpression><![CDATA[$F{tamanho}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="575" y="1" width="51" height="15" forecolor="#006699" backcolor="#E6E6E6" uuid="17803025-f0ad-4d06-9b38-0c855b25fb72"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="333" y="0" width="100" height="20" uuid="4c5a7645-f67a-4751-8a09-853ed3d13333"/>
+				<textFieldExpression><![CDATA[$F{tamanho}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="16">
+		<band height="39">
 			<textField>
 				<reportElement x="43" y="0" width="76" height="15" uuid="91e8dd22-a6b8-4ab2-8bf7-cf8c9d951e8b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -290,12 +293,12 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 				<textFieldExpression><![CDATA[$F{t3}!= 0 ? $F{t3} : "-"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="276" y="0" width="52" height="15" uuid="c2b8a904-0222-4131-af09-d257489ade20"/>
+				<reportElement x="276" y="0" width="57" height="15" uuid="c2b8a904-0222-4131-af09-d257489ade20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{t4}!= 0 ? $F{t4} : "-"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="328" y="0" width="51" height="15" uuid="61867173-9893-485a-9ec1-20b8d6561487"/>
+				<reportElement x="565" y="1" width="61" height="15" uuid="61867173-9893-485a-9ec1-20b8d6561487"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
@@ -304,11 +307,6 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="447" y="0" width="108" height="15" uuid="d66be6fe-93ca-4fe1-8998-e7ff796e4181"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{loja}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="1" y="15" width="554" height="1" printWhenGroupChanges="Codigo" forecolor="#CCCCCC" uuid="3ea7997b-48cc-4f39-b032-a945f02e836f"/>
 				<graphicElement>
@@ -316,11 +314,20 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 				</graphicElement>
 			</line>
 			<textField evaluationTime="Group" evaluationGroup="Codigo" isBlankWhenNull="true">
-				<reportElement x="379" y="0" width="68" height="15" uuid="7ce22387-3fda-47e3-81de-f8bde5e5cd21">
+				<reportElement x="626" y="1" width="68" height="15" uuid="7ce22387-3fda-47e3-81de-f8bde5e5cd21">
 					<printWhenExpression><![CDATA[$V{Codigo_COUNT}.toString().equals('1')]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{total_ref}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="694" y="1" width="108" height="15" uuid="d66be6fe-93ca-4fe1-8998-e7ff796e4181"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{loja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="1" width="100" height="20" uuid="bf6efa7f-9ebc-41b2-a897-631e6bca71b4"/>
+				<textFieldExpression><![CDATA[$F{tamanho}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -342,7 +349,7 @@ order by pro.descricao, ip.loja, ip.codigo, ip.cor]]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="30">
+		<band height="33">
 			<staticText>
 				<reportElement mode="Opaque" x="1" y="0" width="142" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="14740b22-02b4-42f9-a3cc-7be27e614850"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
