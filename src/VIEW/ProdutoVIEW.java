@@ -47,8 +47,8 @@ public class ProdutoVIEW extends javax.swing.JFrame {
         tdgCTR.considerarEnterComoTab(txt_qtd_cores);
         tdgCTR.considerarEnterComoTab(txt_rendimento);
         
-        tdgCTR.considerarEnterComoTab(btn_add);
-        tdgCTR.considerarEnterComoTab(btn_remove);
+        tdgCTR.considerarEnterComoTab(btn_add_cor);
+        tdgCTR.considerarEnterComoTab(btn_remove_cor);
         
         
         listar_categoria_produto();
@@ -92,8 +92,8 @@ public class ProdutoVIEW extends javax.swing.JFrame {
         jCheckBox_Especial = new javax.swing.JCheckBox();
         jLabel11 = new javax.swing.JLabel();
         jComboBox_categoria = new javax.swing.JComboBox();
-        btn_add = new javax.swing.JButton();
-        btn_remove = new javax.swing.JButton();
+        btn_add_cor = new javax.swing.JButton();
+        btn_remove_cor = new javax.swing.JButton();
         btn_config_cores = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -102,6 +102,13 @@ public class ProdutoVIEW extends javax.swing.JFrame {
         txt_qtd_cores = new javax.swing.JTextField();
         jComboBox_id_cor = new javax.swing.JComboBox();
         btn_config_cat = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable_tamanho = new javax.swing.JTable();
+        jLabel13 = new javax.swing.JLabel();
+        jComboBox_categoria_tamanho = new javax.swing.JComboBox();
+        jComboBox_tamanho = new javax.swing.JComboBox();
+        btn_add_tamanho = new javax.swing.JButton();
+        btn_remove_tamanho = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_ref_pesquisar = new javax.swing.JTextField();
@@ -211,12 +218,13 @@ public class ProdutoVIEW extends javax.swing.JFrame {
             }
         });
 
+        txt_qtd_tamanho.setBackground(new java.awt.Color(240, 240, 240));
         txt_qtd_tamanho.setText("4");
         txt_qtd_tamanho.setEnabled(false);
 
         jLabel10.setText("Qtd tamanho:");
 
-        jComboBoxTipo_tamanho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NORMAL", "JUVENIL", "ESPECIAL", "BABY", "KIDS" }));
+        jComboBoxTipo_tamanho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NORMAL", "JUVENIL", "ESPECIAL", "BABY", "KIDS", "MANUAL" }));
         jComboBoxTipo_tamanho.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxTipo_tamanhoItemStateChanged(evt);
@@ -265,19 +273,19 @@ public class ProdutoVIEW extends javax.swing.JFrame {
             }
         });
 
-        btn_add.setText("+");
-        btn_add.addActionListener(new java.awt.event.ActionListener() {
+        btn_add_cor.setText("+");
+        btn_add_cor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_addActionPerformed(evt);
+                btn_add_corActionPerformed(evt);
             }
         });
 
-        btn_remove.setText("-");
-        btn_remove.setFocusable(false);
-        btn_remove.setRequestFocusEnabled(false);
-        btn_remove.addActionListener(new java.awt.event.ActionListener() {
+        btn_remove_cor.setText("-");
+        btn_remove_cor.setFocusable(false);
+        btn_remove_cor.setRequestFocusEnabled(false);
+        btn_remove_cor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_removeActionPerformed(evt);
+                btn_remove_corActionPerformed(evt);
             }
         });
 
@@ -341,6 +349,73 @@ public class ProdutoVIEW extends javax.swing.JFrame {
             }
         });
 
+        jTable_tamanho.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "REF", "TAMANHO", "ID_TAM"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_tamanho.setFocusable(false);
+        jTable_tamanho.getTableHeader().setReorderingAllowed(false);
+        jTable_tamanho.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                jTable_tamanhoComponentResized(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTable_tamanho);
+        if (jTable_tamanho.getColumnModel().getColumnCount() > 0) {
+            jTable_tamanho.getColumnModel().getColumn(0).setResizable(false);
+            jTable_tamanho.getColumnModel().getColumn(1).setResizable(false);
+            jTable_tamanho.getColumnModel().getColumn(2).setResizable(false);
+            jTable_tamanho.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        jLabel13.setText("Cat. Tam:");
+
+        jComboBox_categoria_tamanho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CATEGORIA" }));
+        jComboBox_categoria_tamanho.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox_categoria_tamanhoItemStateChanged(evt);
+            }
+        });
+        jComboBox_categoria_tamanho.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBox_categoria_tamanhoFocusGained(evt);
+            }
+        });
+
+        jComboBox_tamanho.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jComboBox_tamanhoKeyPressed(evt);
+            }
+        });
+
+        btn_add_tamanho.setText("+");
+        btn_add_tamanho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_add_tamanhoActionPerformed(evt);
+            }
+        });
+
+        btn_remove_tamanho.setText("-");
+        btn_remove_tamanho.setFocusable(false);
+        btn_remove_tamanho.setRequestFocusEnabled(false);
+        btn_remove_tamanho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_remove_tamanhoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPCadastrarLayout = new javax.swing.GroupLayout(jPCadastrar);
         jPCadastrar.setLayout(jPCadastrarLayout);
         jPCadastrarLayout.setHorizontalGroup(
@@ -349,57 +424,70 @@ public class ProdutoVIEW extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPCadastrarLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPCadastrarLayout.createSequentialGroup()
-                        .addComponent(btn_Cadastrar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_Atualizar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_Limpar))
-                    .addGroup(jPCadastrarLayout.createSequentialGroup()
-                        .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPCadastrarLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(2, 2, 2)
-                                .addComponent(jComboBoxTipo_tamanho, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPCadastrarLayout.createSequentialGroup()
+                        .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPCadastrarLayout.createSequentialGroup()
+                                .addComponent(btn_Cadastrar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_Atualizar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_Limpar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPCadastrarLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_Ref, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPCadastrarLayout.createSequentialGroup()
-                                .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txt_Ref, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_qtd_tamanho)
-                                    .addComponent(txt_rendimento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPCadastrarLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox_Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboBox_Descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCadastrarLayout.createSequentialGroup()
+                        .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPCadastrarLayout.createSequentialGroup()
-                                .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel8)
+                                .addGap(2, 2, 2)
+                                .addComponent(jComboBoxTipo_tamanho, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_qtd_tamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPCadastrarLayout.createSequentialGroup()
+                                .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                     .addGroup(jPCadastrarLayout.createSequentialGroup()
-                                        .addComponent(txt_qtd_cores, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBox_categoria_tamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCadastrarLayout.createSequentialGroup()
-                                        .addComponent(jComboBox_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox_cor, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBox_tamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_add_tamanho)
+                                    .addComponent(btn_remove_tamanho, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPCadastrarLayout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox_cor, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPCadastrarLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_qtd_cores, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_rendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_remove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_add_cor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_remove_cor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -408,8 +496,11 @@ public class ProdutoVIEW extends javax.swing.JFrame {
                     .addComponent(jComboBox_id_cor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_config_cat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_config_cores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        jPCadastrarLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_add_tamanho, btn_remove_tamanho});
+
         jPCadastrarLayout.setVerticalGroup(
             jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPCadastrarLayout.createSequentialGroup()
@@ -424,35 +515,41 @@ public class ProdutoVIEW extends javax.swing.JFrame {
                         .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
-                            .addComponent(jComboBoxTipo_tamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
                             .addComponent(jComboBox_cor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_add))
+                            .addComponent(btn_add_cor)
+                            .addComponent(jComboBox_categoria_tamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13)
+                            .addComponent(jComboBox_tamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_add_tamanho))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPCadastrarLayout.createSequentialGroup()
                                 .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPCadastrarLayout.createSequentialGroup()
-                                        .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel10)
-                                            .addComponent(txt_qtd_tamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel4)
-                                            .addComponent(txt_qtd_cores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(9, 9, 9)
-                                        .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel12)
-                                            .addComponent(txt_rendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(btn_remove))
-                                .addGap(4, 4, 4)
+                                    .addComponent(btn_remove_cor)
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_remove_tamanho))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel10)
+                                    .addComponent(jComboBoxTipo_tamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(txt_qtd_tamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btn_Cadastrar)
                                     .addComponent(btn_Atualizar)
-                                    .addComponent(btn_Limpar)))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btn_Limpar)
+                                    .addComponent(jLabel9)
+                                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPCadastrarLayout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txt_qtd_cores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(txt_rendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPCadastrarLayout.createSequentialGroup()
                         .addComponent(jCheckBox_Especial)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -465,6 +562,8 @@ public class ProdutoVIEW extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jPCadastrarLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btn_add_tamanho, btn_remove_tamanho});
 
         jComboBox_id_cor.setVisible(false);
 
@@ -570,7 +669,7 @@ public class ProdutoVIEW extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -581,7 +680,7 @@ public class ProdutoVIEW extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
         );
 
         jPCadastrar.getAccessibleContext().setAccessibleName("");
@@ -1188,7 +1287,7 @@ public class ProdutoVIEW extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jComboBox_categoriaFocusGained
 
-    private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
+    private void btn_remove_corActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_remove_corActionPerformed
         // TODO add your handling code here:
         CoresDTO produto_cores = new CoresDTO();
 
@@ -1223,9 +1322,9 @@ public class ProdutoVIEW extends javax.swing.JFrame {
         
         jComboBox_cor.requestFocus();
         
-    }//GEN-LAST:event_btn_removeActionPerformed
+    }//GEN-LAST:event_btn_remove_corActionPerformed
 
-    private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
+    private void btn_add_corActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_corActionPerformed
         // TODO add your handling code here:
         CoresDTO produto_cores = new CoresDTO();
         
@@ -1248,7 +1347,7 @@ public class ProdutoVIEW extends javax.swing.JFrame {
         }
         
         jComboBox_cor.requestFocus();
-    }//GEN-LAST:event_btn_addActionPerformed
+    }//GEN-LAST:event_btn_add_corActionPerformed
 
     private void jTable_corComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTable_corComponentResized
         // TODO add your handling code here:
@@ -1261,7 +1360,7 @@ public class ProdutoVIEW extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(evt.getKeyCode() == evt.VK_ENTER){
             
-                btn_add.requestFocus();
+                btn_add_cor.requestFocus();
             
         }
     }//GEN-LAST:event_jComboBox_corKeyPressed
@@ -1275,6 +1374,30 @@ public class ProdutoVIEW extends javax.swing.JFrame {
         // TODO add your handling code here:
         DadosCategoria(jComboBox_Descricao.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBox_DescricaoActionPerformed
+
+    private void jTable_tamanhoComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTable_tamanhoComponentResized
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_tamanhoComponentResized
+
+    private void jComboBox_categoria_tamanhoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_categoria_tamanhoItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_categoria_tamanhoItemStateChanged
+
+    private void jComboBox_categoria_tamanhoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox_categoria_tamanhoFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_categoria_tamanhoFocusGained
+
+    private void jComboBox_tamanhoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox_tamanhoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_tamanhoKeyPressed
+
+    private void btn_add_tamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_tamanhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_add_tamanhoActionPerformed
+
+    private void btn_remove_tamanhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_remove_tamanhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_remove_tamanhoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1323,10 +1446,12 @@ public class ProdutoVIEW extends javax.swing.JFrame {
     private javax.swing.JButton btn_Limpar_Lista;
     private javax.swing.JButton btn_Listar;
     private javax.swing.JButton btn_Pesquisar;
-    private javax.swing.JButton btn_add;
+    private javax.swing.JButton btn_add_cor;
+    private javax.swing.JButton btn_add_tamanho;
     private javax.swing.JButton btn_config_cat;
     private javax.swing.JButton btn_config_cores;
-    private javax.swing.JButton btn_remove;
+    private javax.swing.JButton btn_remove_cor;
+    private javax.swing.JButton btn_remove_tamanho;
     private javax.swing.JCheckBox jCheckBox_Bolso;
     private javax.swing.JCheckBox jCheckBox_Bordado;
     private javax.swing.JCheckBox jCheckBox_Costas;
@@ -1336,12 +1461,15 @@ public class ProdutoVIEW extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxTipo_tamanho;
     private javax.swing.JComboBox jComboBox_Descricao;
     private javax.swing.JComboBox jComboBox_categoria;
+    private javax.swing.JComboBox jComboBox_categoria_tamanho;
     private javax.swing.JComboBox jComboBox_cor;
     private javax.swing.JComboBox jComboBox_id_cor;
+    private javax.swing.JComboBox jComboBox_tamanho;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1352,8 +1480,10 @@ public class ProdutoVIEW extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable_cor;
+    private javax.swing.JTable jTable_tamanho;
     private javax.swing.JTextField txt_Ref;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_qtd_cores;

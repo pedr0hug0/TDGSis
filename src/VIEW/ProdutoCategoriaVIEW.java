@@ -184,7 +184,7 @@ public class ProdutoCategoriaVIEW extends javax.swing.JFrame {
 
         jLabel1.setText("Tipo Tamanho:");
 
-        jComboBox_tipo_tamanho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NORMAL", "JUVENIL", "ESPECIAL", "BABY", "KIDS" }));
+        jComboBox_tipo_tamanho.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NORMAL", "JUVENIL", "ESPECIAL", "BABY", "KIDS", "MANUAL" }));
         jComboBox_tipo_tamanho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_tipo_tamanhoActionPerformed(evt);
