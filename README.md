@@ -11,4 +11,7 @@ Executei fases de analises de requisitos, desenvolvimento, testes e implementaç
 
 Sistema desenvolvido em <b>Java</b> com a IDE NetBeans e utilizando o banco de dados <b>PostgreSQL</b> e biblioteca do <b>iReport</b> para relatórios/etiquetas.
 
-PS: Código sofreu várias modificações e meu conhecimento foi melhorando durante o desenvolvimento, então muito código poderia ter escrito com melhores práticas e com menos linhas.
+PS: Código sofreu várias modificações e meu conhecimento foi melhorando durante o desenvolvimento, então muito código poderia ter sido escrito com melhores práticas e com menos linhas e uma refactoração ocuparia muito tempo.
+
+Projeto iniciado em agosto de 2014.
+//adicionarei imagens do projeto em breve.
